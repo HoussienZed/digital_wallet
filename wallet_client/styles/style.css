@@ -10,9 +10,6 @@ html {
 
 body {
     background-color: hsl(189, 81%, 92%);
-    display: flex;
-    justify-content: center;
-    align-items: center;
     height: 100vh;
 }
 
@@ -48,4 +45,10 @@ input {
     background-color: hsla(189, 100%, 77%, 0.434);
     height: 4vh;
     border-radius: 10px;
+}
+
+nav {
+    display: flex;
+    justify-content: flex-end;
+    margin: 1em;
 }
