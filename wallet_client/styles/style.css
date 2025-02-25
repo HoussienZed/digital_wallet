@@ -2,6 +2,8 @@
     margin: 0;
     padding: 0;
     box-sizing: border-box;
+    list-style: none;
+    text-decoration: none;
 }
 
 html {
@@ -11,13 +13,36 @@ html {
 body {
     background-color: hsl(189, 81%, 92%);
     height: 100vh;
+    line-height: 1.6; /*controls the vertical spacing between lines of text*/
+    overflow-x: hidden;
 }
 
-.container {
+/* .container {
     display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 1em;
+    flex-direction: row;
+    justify-content: space-between;
+    gap: 10em;
+} */
+
+a {
+    color: rgb(250, 249, 249);
+    transition: all 300ms ease;
+}
+
+img {
+    display: block;
+    width: 100%;
+    object-fit: cover;
+}
+
+nav {
+    background-color: #3a81ec;
+    width: 100vw;
+    height: 4.5rem;
+    position: fixed;
+    top: 0;
+    z-index: 10;
+    box-shadow: -8px -8px 15px rgba(255, 255, 255, 0.1), 5px 5px 15px rgba(0, 0, 0, 0.2);
 }
 
 .form-buttons {
@@ -38,6 +63,70 @@ button {
     box-shadow: -8px -8px 15px rgba(255, 255, 255, 0.1), 5px 5px 15px rgba(0, 0, 0, 0.2);
 }
 
+nav button {
+    display: none;
+}
+
+.nav_container {
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+}
+
+.nav_logo {
+    font-weight: 600;
+    font-size: 1.2rem;
+}
+
+.nav_items {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+.nav_profile {
+    position: relative;
+    cursor: pointer;
+}
+
+.nav_profile ul {
+    position: absolute;
+    top: 125%;
+    right: 0;
+    display: flex;
+    flex-direction: column;
+    box-shadow: 0 3rem 3rem rgba(0, 0, 0, 0.4);
+    background-color: #3a81ec;
+    visibility: hidden;
+    opacity: 0;
+    transition: all 300ms ease;
+} 
+
+.nav_profile:hover > ul {
+    visibility: visible;
+    opacity: 1;
+}
+
+.nav_profile ul li a {
+    padding: 1rem;
+    background-color: #3a81ec;
+    display: block;
+    width: 100%;
+}
+
+.nav_profile ul li:last-child a {
+    background-color: rgba(255, 0, 0, 0.758);
+}
+
+.avatar {
+    width: 2.5rem;
+    height: 2.5rem;
+    overflow: hidden;
+    border-radius: 50%;
+    border: 0.2rem solid black;
+}
+
 form {
     display: flex;
     flex-direction: column;
@@ -54,10 +143,4 @@ input {
     padding: 0.5em;
     border: none;
     box-shadow: -8px -8px 15px rgba(255, 255, 255, 0.1), 5px 5px 15px rgba(0, 0, 0, 0.2);
-}
-
-nav {
-    display: flex;
-    justify-content: flex-end;
-    margin: 1em;
 }
