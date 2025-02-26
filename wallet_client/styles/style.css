@@ -13,7 +13,7 @@ html {
 
 body {
     background-color: hsl(189, 81%, 92%);
-    height: 100%;
+    min-height: 100%; /* we use minimum height so when the screen is larger than the browser no scrollbar will pop up*/
     line-height: 1.6; /*controls the vertical spacing between lines of text*/
     overflow-x: hidden;
 
@@ -210,10 +210,131 @@ input {
     border-radius: 10px;
 }
 
+/* footer styling */
 
+footer {
+    margin-top: 5em;
+    background-color: #1e1e66;
+    padding: 5rem 0;
+    box-shadow: inset 0 1.5rem rgba(0, 0, 0, 0.2);
+}
+
+.footer_socials {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 2em;
+}
+
+.footer_socials a{
+    background-color: #3a81ec;
+    border-radius: 50%;
+    height: 2.3em;
+    width: 2.3em;
+    display: flex;
+    justify-self: center;
+    align-items: center;
+    padding: 0.7em;
+}
+
+.footer_socials a:hover{
+    background-color: white;
+    color: #0f0f3e;
+}
+
+.footer_container {
+    display: flex;
+    justify-content: space-around;
+    gap: 1em;
+    color: white;
+    margin-top: 3.5em;
+    margin-inline: 1em;
+}
+
+footer h4 {
+    margin-bottom: 0.6em;
+}
+
+footer ul a {
+    opacity: 0.75;
+}
+
+footer ul a:hover {
+    opacity: 1;
+}
+
+
+
+ 
 
 /*Responssiveness*/
  @media (max-width: 768px) { /* tablets */
+    nav button {
+        display: inline-block;
+        font-size: 1.5rem;
+        background: transparent;
+        color: white;
+        cursor: pointer;
+    }
+
+    nav button#close_nav_btn {
+        display: none;
+    }
+
+    nav button#open_nav_btn {
+        box-shadow: none;
+    }
+
+    .nav_container {
+        position: relative;
+    }
+
+    .nav_items {
+        position: absolute;
+        flex-direction: column;
+        top: 100%;
+        right: 0;
+        width: 12rem;
+        align-items: flex-start;
+        justify-content: center;
+        gap: 0;
+        display: none;
+    }
+
+    .nav_items li {
+        width: 100%;
+        height: 4rem;
+        display: flex;
+        align-items: center;
+        box-shadow: -2rem 3rem 7rem rgba(0, 0, 0, 0.7);
+        background: #1e1e66;
+        border-top: 1px solid #0f0f3e;
+    }
+
+    .nav_items a {
+        border-radius: 0;
+        width: 100%;
+        height: 100%;
+        background: #1e1e66;
+        padding: 0 2rem;
+        display: flex;
+        align-items: center;
+    }
+
+    .nav_profile {
+        background: #1e1e66;
+    }
+
+    .nav_profile ul {
+        top: 100%;
+        width: 100%;
+    }
+
+    .nav_profile .avatar {
+        margin-left: 2rem;
+        border: 0;
+    }
+
     .info {
         flex-direction: column;
         align-items: center;
@@ -230,6 +351,9 @@ input {
     button {
         font-size: 16px;
         width: 8em;
+    }
+    .footer_container {
+        flex-wrap: wrap;
     }
  }
 
