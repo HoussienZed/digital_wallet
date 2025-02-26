@@ -153,3 +153,8 @@ input {
     align-items: center;
     margin-top: 10em;
 }
+
+.form-buttons > a {
+    color: black;
+    text-decoration: underline;
+}
