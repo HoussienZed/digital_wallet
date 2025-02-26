@@ -314,6 +314,18 @@ footer ul a:hover {
         transform-origin: top; /* where to start the animation from */
     }
 
+    .nav_items li:nth-child(2) {
+        animation-delay: 250ms; /* adding a delay for each item in the nav bar */
+    }
+
+    .nav_items li:nth-child(3) {
+        animation-delay: 500ms; /* adding a delay for each item in the nav bar */
+    }
+
+    .nav_items li:nth-child(4) {
+        animation-delay: 750ms; /* adding a delay for each item in the nav bar */
+    }
+
     @keyframes animationDropdown {
         0% {
             transform: rotateX(90deg);
