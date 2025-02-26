@@ -22,8 +22,7 @@ body {
     display: flex;
     flex-direction: row;
     justify-content: center;
-    gap: 10em;
-} */
+}  */
 
 .container > div:first-child {
     margin-left: 0em;
@@ -50,22 +49,27 @@ nav {
     box-shadow: -8px -8px 15px rgba(255, 255, 255, 0.1), 5px 5px 15px rgba(0, 0, 0, 0.2);
 }
 
-.form-buttons {
+.form_buttons {
     display: flex;
+    justify-content: space-between;
     align-items: center;
     flex-direction: row;
     gap: 1em;
     flex-wrap: wrap;
+    width: 100%;
+    font-size: 20px;
 }
 
 button {
     color: rgb(0, 0, 0);
     background-color: #253ee04b;
     border-radius: 10px;
-    padding: 0.5em;
+    padding: 1em;
     cursor: pointer;
     border: none;
     box-shadow: -8px -8px 15px rgba(255, 255, 255, 0.1), 5px 5px 15px rgba(0, 0, 0, 0.2);
+    font-size: 18px;
+    
 }
 
 nav button {
@@ -133,6 +137,9 @@ nav button {
     border-radius: 50%;
     border: 0.2rem solid black;
 }
+.form_box {
+    width: 30%;
+}
 
 form {
     display: flex;
@@ -141,15 +148,19 @@ form {
 
 label {
     margin-bottom: 0.3em;
+    font-size: 20px;
 }
 
 input {
     background-color: hsl(189, 81%, 92%);
-    height: 30px;
+    height: 50px;
+    width: 100%;
     border-radius: 10px;
     padding: 0.5em;
     border: none;
     box-shadow: -8px -8px 15px rgba(255, 255, 255, 0.1), 5px 5px 15px rgba(0, 0, 0, 0.2);
+    outline: 0;
+    font-size: 20px;
 }
 
 .signinForm {
@@ -160,7 +171,45 @@ input {
     margin-top: 10em;
 }
 
-.form-buttons > a {
+.form_buttons > a {
     color: black;
     text-decoration: underline;
 }
+
+.info {
+    margin-top: 10em;
+    display: flex;
+    justify-content: space-around;
+    gap: 2.5%;
+    width: 100%;
+}
+
+.post_image {
+    width: 30%;
+}
+
+.post_image > img {
+    border-radius: 10px;
+}
+
+
+
+/*Responssiveness*/
+ @media (max-width: 768px) { /* tablets */
+    .post_info > h2 {
+        font-size: 24px;
+    }
+    .post_info > p {
+        font-size: 15px;
+    }
+ }
+
+ @media (max-width: 480px) { /* mobile phones */
+    .info {
+        flex-direction: column;
+        align-items: center;
+    }
+    .post_image {
+        width: 90%;
+    }
+ }
