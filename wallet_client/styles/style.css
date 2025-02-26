@@ -1,3 +1,4 @@
+/*GEneral styling*/
 *{
     margin: 0;
     padding: 0;
@@ -18,11 +19,7 @@ body {
 
 }
 
-/* .container {
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
-}  */
+/* nav bar styling */
 
 .container > div:first-child {
     margin-left: 0em;
@@ -47,29 +44,6 @@ nav {
     top: 0;
     z-index: 10;
     box-shadow: -8px -8px 15px rgba(255, 255, 255, 0.1), 5px 5px 15px rgba(0, 0, 0, 0.2);
-}
-
-.form_buttons {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    flex-direction: row;
-    gap: 1em;
-    flex-wrap: wrap;
-    width: 100%;
-    font-size: 20px;
-}
-
-button {
-    color: rgb(0, 0, 0);
-    background-color: #253ee04b;
-    border-radius: 10px;
-    padding: 1em;
-    cursor: pointer;
-    border: none;
-    box-shadow: -8px -8px 15px rgba(255, 255, 255, 0.1), 5px 5px 15px rgba(0, 0, 0, 0.2);
-    font-size: 18px;
-    
 }
 
 nav button {
@@ -137,6 +111,32 @@ nav button {
     border-radius: 50%;
     border: 0.2rem solid black;
 }
+
+.form_buttons {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-direction: row;
+    gap: 1em;
+    flex-wrap: wrap;
+    width: 100%;
+    font-size: 20px;
+}
+
+button {
+    color: rgb(0, 0, 0);
+    background-color: #253ee04b;
+    border-radius: 10px;
+    padding: 1em;
+    cursor: pointer;
+    border: none;
+    box-shadow: -8px -8px 15px rgba(255, 255, 255, 0.1), 5px 5px 15px rgba(0, 0, 0, 0.2);
+    font-size: 18px;
+    
+}
+
+/* sign in form styling */
+
 .form_box {
     width: 30%;
 }
@@ -175,6 +175,8 @@ input {
     color: black;
     text-decoration: underline;
 }
+
+/* main page pictures styling */
 
 .info {
     margin-top: 10em;
