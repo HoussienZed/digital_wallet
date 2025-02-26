@@ -19,6 +19,7 @@ body {
 
 }
 
+
 /* nav bar styling */
 
 .container > div:first-child {
@@ -114,13 +115,12 @@ nav button {
 
 .form_buttons {
     display: flex;
-    justify-content: space-between;
+    flex-direction: column;
     align-items: center;
-    flex-direction: row;
     gap: 1em;
     flex-wrap: wrap;
     width: 100%;
-    font-size: 20px;
+    font-size: 16px;
 }
 
 button {
@@ -131,14 +131,15 @@ button {
     cursor: pointer;
     border: none;
     box-shadow: -8px -8px 15px rgba(255, 255, 255, 0.1), 5px 5px 15px rgba(0, 0, 0, 0.2);
-    font-size: 18px;
+    font-size: 20px;
+    width: 10em;
     
 }
 
 /* sign in form styling */
 
 .form_box {
-    width: 30%;
+    width: 40%;
 }
 
 form {
@@ -178,12 +179,27 @@ input {
 
 /* main page pictures styling */
 
-.info {
+.main_page_images {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 3em;
     margin-top: 10em;
+}
+
+.title {
+    font-size: 32px;
+}
+
+.info {
     display: flex;
     justify-content: space-around;
     gap: 2.5%;
     width: 100%;
+}
+
+.post_info > p {
+    font-size: 22px;
 }
 
 .post_image {
@@ -198,11 +214,22 @@ input {
 
 /*Responssiveness*/
  @media (max-width: 768px) { /* tablets */
-    .post_info > h2 {
+    .info {
+        flex-direction: column;
+        align-items: center;
+    }
+    .post_image {
+        width: 90%;
+    }
+    .title {
         font-size: 24px;
     }
-    .post_info > p {
-        font-size: 15px;
+    .form_box {
+        width: 80%;
+    }
+    button {
+        font-size: 16px;
+        width: 8em;
     }
  }
 
@@ -213,5 +240,12 @@ input {
     }
     .post_image {
         width: 90%;
+    }
+    .post_info > p {
+        font-size: 18px;
+    }
+    button {
+        font-size: 14px;
+        width: 6em;
     }
  }
