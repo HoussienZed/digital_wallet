@@ -15,12 +15,13 @@ body {
     height: 100vh;
     line-height: 1.6; /*controls the vertical spacing between lines of text*/
     overflow-x: hidden;
+
 }
 
 /* .container {
     display: flex;
     flex-direction: row;
-    justify-content: space-between;
+    justify-content: center;
     gap: 10em;
 } */
 
@@ -143,4 +144,12 @@ input {
     padding: 0.5em;
     border: none;
     box-shadow: -8px -8px 15px rgba(255, 255, 255, 0.1), 5px 5px 15px rgba(0, 0, 0, 0.2);
+}
+
+.signinForm {
+    display: flex;
+    flex-direction: column;
+    width: 100vw;
+    align-items: center;
+    margin-top: 10em;
 }
