@@ -268,7 +268,7 @@ footer ul a:hover {
  
 
 /*Responssiveness*/
- @media (max-width: 768px) { /* tablets */
+@media (max-width: 768px) { /* tablets */
     nav button {
         display: inline-block;
         font-size: 1.5rem;
@@ -281,7 +281,7 @@ footer ul a:hover {
         display: none;
     }
 
-    nav button#open_nav_btn {
+    nav button#open_nav_btn, nav button#close_nav_btn {
         box-shadow: none;
     }
 
@@ -309,6 +309,19 @@ footer ul a:hover {
         box-shadow: -2rem 3rem 7rem rgba(0, 0, 0, 0.7);
         background: #1e1e66;
         border-top: 1px solid #0f0f3e;
+        animation: animationDropdown 1s 0s ease forwards;
+        opacity: 0;
+        transform-origin: top; /* where to start the animation from */
+    }
+
+    @keyframes animationDropdown {
+        0% {
+            transform: rotateX(90deg);
+        }
+        100% {
+            transform: rotateX(0deg);
+            opacity: 1;
+        }
     }
 
     .nav_items a {
@@ -357,7 +370,7 @@ footer ul a:hover {
     }
  }
 
- @media (max-width: 480px) { /* mobile phones */
+@media (max-width: 480px) { /* mobile phones */
     .info {
         flex-direction: column;
         align-items: center;
