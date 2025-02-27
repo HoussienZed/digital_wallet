@@ -141,7 +141,7 @@ button {
     
 }
 
-.form_buttons button a {
+.form_buttons a {
     color: black;
 }
 
@@ -179,11 +179,6 @@ input {
     width: 100%;
     align-items: center;
     margin-top: 10em;
-}
-
-.form_buttons > a:last-child {
-    color: black;
-    text-decoration: underline;
 }
 
 /* main page pictures styling */
@@ -245,7 +240,8 @@ footer {
     display: flex;
     justify-content: center;
     align-items: center;
-    gap: 2em;
+    gap: 1em;
+    width: 100%;
 }
 
 .footer_socials a{
