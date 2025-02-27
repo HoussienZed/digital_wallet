@@ -234,19 +234,24 @@ input {
 
 .alert_message {
     display: hidden;
-    color: rgb(0, 0, 0);
     display: flex;
     justify-content: center;
     align-items: center;
-    border-radius: 10px;
-    border: 2px solid red;
-    background-color: rgba(255, 0, 0, 0.223);
+    border-radius: 10px; 
     height: 50px;
     margin-bottom: 1.5em;
     font-size: 20px;
-    
 }
 
+.alert_message.error{
+    color: #da0f3f;
+    background-color: hsl(346, 87%, 46%, 15%);
+}
+
+.alert_message.success{
+    color: #00c476;
+    background-color: hsl(156, 100%, 38%, 15%)
+}
 /* footer styling */
 
 footer {
