@@ -139,7 +139,7 @@ button {
 /* sign in form styling */
 
 .form_box {
-    width: 40%;
+    width: 35%;
 }
 
 form {
@@ -196,6 +196,7 @@ input {
     justify-content: space-around;
     gap: 2.5%;
     width: 100%;
+    height: 100%;
 }
 
 .post_info > p {
@@ -204,9 +205,19 @@ input {
 
 .post_image {
     width: 30%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    /* gap: 1em; */
+    margin: 1em;
+
 }
 
-.post_image > img {
+.post_image button {
+    background-color: #3a81ec;
+}
+
+.post_image img {
     border-radius: 10px;
 }
 
@@ -377,6 +388,9 @@ footer ul a:hover {
         font-size: 16px;
         width: 8em;
     }
+    .footer_container article{
+        width: 40%;;
+    }
     .footer_container {
         flex-wrap: wrap;
     }
@@ -396,5 +410,8 @@ footer ul a:hover {
     button {
         font-size: 14px;
         width: 6em;
+    }
+    .footer_container article{
+        width: 60%;;
     }
  }
