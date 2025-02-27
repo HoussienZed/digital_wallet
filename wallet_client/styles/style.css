@@ -13,10 +13,14 @@ html {
 
 body {
     background-color: hsl(189, 81%, 92%);
-    min-height: 100%; /* we use minimum height so when the screen is larger than the browser no scrollbar will pop up*/
+    min-height: 100vh; /* we use minimum height so when the screen is larger than the browser no scrollbar will pop up*/
     line-height: 1.6; /*controls the vertical spacing between lines of text*/
     overflow-x: hidden;
 
+}
+
+body::-webkit-scrollbar {
+    display: none; /* For Chrome, Safari */
 }
 
 
@@ -39,7 +43,7 @@ img {
 
 nav {
     background-color: #3a81ec;
-    width: 100vw;
+    width: 100%;
     height: 4.5rem;
     position: fixed;
     top: 0;
@@ -136,6 +140,11 @@ button {
     
 }
 
+.form_buttons button a {
+    color: black;
+    font-weight: 00;
+}
+
 /* sign in form styling */
 
 .form_box {
@@ -167,12 +176,12 @@ input {
 .signinForm {
     display: flex;
     flex-direction: column;
-    width: 100vw;
+    width: 100%;
     align-items: center;
     margin-top: 10em;
 }
 
-.form_buttons > a {
+.form_buttons > a:nth-child(3) {
     color: black;
     text-decoration: underline;
 }
@@ -221,6 +230,7 @@ input {
 .post_image img {
     border-radius: 10px;
 }
+
 
 /* footer styling */
 
