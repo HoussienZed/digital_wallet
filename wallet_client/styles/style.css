@@ -145,6 +145,10 @@ button {
     color: black;
 }
 
+.form_buttons > a {
+    text-decoration: underline;
+}
+
 /* sign in form styling */
 
 .form_box {
@@ -226,6 +230,22 @@ input {
     border-radius: 10px;
 }
 
+/* designing alert message */
+
+.alert_message {
+    display: hidden;
+    color: rgb(0, 0, 0);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 10px;
+    border: 2px solid red;
+    background-color: rgba(255, 0, 0, 0.223);
+    height: 50px;
+    margin-bottom: 1.5em;
+    font-size: 20px;
+    
+}
 
 /* footer styling */
 

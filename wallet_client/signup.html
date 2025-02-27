@@ -41,7 +41,10 @@
         </div>
 
         <div class="form_box">
-            <form action="">    
+            <form action=""> 
+                <div class="alert_message">
+                    <p>There an error in the data entered</p>
+                </div>   
                 <input type="text" name="email/ phone number" placeholder="Full Name">
                 <br>
                 <input type="password" name="password" placeholder="Password">
@@ -53,6 +56,11 @@
                 <input type="text" name="phone_number" placeholder="Phone Number">
                 <br>   
                 <input type="text" name="address" placeholder="Address">
+                <br>
+                <div class="form_control">
+                    <label for="profile_Pic">Upload Profile Picture</label>
+                    <input type="file" name="profile_picture">
+                </div>
                 <div class="form_buttons">
                     <button type="submit"><a href="/wallet_client/signup.html">Sign Up</a></button>
                     <a href="">Login Using Gmail</a>
