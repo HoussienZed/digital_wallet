@@ -160,10 +160,6 @@ form {
     flex-direction: column;
 }
 
-label {
-    margin-bottom: 0.3em;
-    font-size: 20px;
-}
 
 input {
     background-color: hsl(189, 81%, 92%);
