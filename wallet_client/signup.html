@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Z Digital Wallet</title>
+    <link rel="stylesheet" href="./styles/style.css">
+    <link rel="stylesheet" href="https://unicons.iconscout.com/release/v4.0.8/css/line.css">
+</head>
+<body>
+    <nav>
+        <div class="container nav_container">
+            <div>
+                <a href="/wallet_client/index.html" class="nav_logo">Main Page</a>
+            </div>
+            <div>
+                <ul class="nav_items">
+                    <li><a href="/wallet_client/internalTransactions.html">Transaction</a></li>
+                    <li><a href="/wallet_client/about.html">About</a></li>
+                    <li><a href="/wallet_client/help.html">Help</a></li>
+                    <li class="nav_profile">
+                        <div class="avatar">
+                            <img src="/wallet_client/assets/_BOK7151.jpg" alt="">
+                        </div>
+                        <ul>
+                            <li><a href="/wallet_client/editProfile.html">Dashboard</a></li>
+                            <li><a href="/wallet_client/signin.html">Logout</a></li>
+                        </ul>
+                    </li>
+                </ul>
+                
+                <button id="open_nav_btn"><i class="uil uil-bars"></i></button>
+                <button id="close_nav_btn"><i class="uil uil-multiply"></i></button>
+            </div>
+        </div>
+    </nav>
+
+    <div class="signinForm">
+        <div class="title">
+            <h1>Z DIGITAL WALLET</h1>
+        </div>
+
+        <div class="form_box">
+            <form action="">
+                <label for="user" class="fields">Full Name:</label>    
+                <input type="text" name="email/ phone number" id="user" placeholder="Full Name">
+                <br>
+                <label for="password" class="fields">Password:</label>
+                <input type="password" name="password" id="password" placeholder="Password">
+                <br>
+                <label for="password" class="fields">Repeat Password:</label>    
+                <input type="password" name="repeated_password" id="password" placeholder="Email/ Phone Number">
+                <br>
+                <label for="email" class="fields">Email:</label>    
+                <input type="text" name="email" id="email" placeholder="Email">
+                <br>
+                <label for="phone_number" class="fields">Phone Number:</label>    
+                <input type="text" name="phone_number" id="phone_number" placeholder="Phone Number">
+                <br>
+                <label for="address" class="fields">Address:</label>    
+                <input type="text" name="address" id="address" placeholder="Address">
+                <div class="form_buttons">
+                    <button type="submit"><a href="/wallet_client/signup.html">Sign Up</a></button>
+                    <a href="">Login Using Gmail</a>
+                </div>
+            </form>
+        </div>
+    </div>
+
+</body>
+
+</html>
