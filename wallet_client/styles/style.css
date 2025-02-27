@@ -274,11 +274,22 @@ footer ul a:hover {
     opacity: 1;
 }
 
+/* styling about page */
 
-
+.main_page_images > p {
+    font-size: 24px;
+    margin-inline: 8em;
+    text-align: justify;
+}
  
 
 /*Responssiveness*/
+@media (max-width: 1024px){
+    .main_page_images > p {
+        margin-inline: 3em;
+    }
+}
+
 @media (max-width: 768px) { /* tablets */
     nav button {
         display: inline-block;
@@ -394,6 +405,9 @@ footer ul a:hover {
     .footer_container {
         flex-wrap: wrap;
     }
+    .main_page_images > p {
+        font-size: 16px;
+    }
  }
 
 @media (max-width: 480px) { /* mobile phones */
@@ -413,5 +427,9 @@ footer ul a:hover {
     }
     .footer_container article{
         width: 60%;;
+    }
+    .main_page_images > p {
+        margin-inline: 2em;
+        font-size: 12px;
     }
  }
