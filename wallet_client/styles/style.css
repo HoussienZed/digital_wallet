@@ -189,6 +189,7 @@ input {
 
 .title {
     font-size: 32px;
+    text-align: center;
 }
 
 .info {
@@ -281,7 +282,22 @@ footer ul a:hover {
     margin-inline: 8em;
     text-align: justify;
 }
- 
+
+/* styling contact info page */
+.contact_info {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    gap: 2em;
+}
+
+.inside_contact_info {
+    display: flex;
+    justify-content: space-between;
+    gap: 1em;
+    font-size: 24px;
+}
 
 /*Responssiveness*/
 @media (max-width: 1024px){
