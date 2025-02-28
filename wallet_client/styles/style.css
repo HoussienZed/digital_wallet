@@ -183,7 +183,7 @@ input {
 
 /* main page pictures styling */
 
-.main_page_images {
+.main_page {
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -208,7 +208,7 @@ input {
     font-size: 22px;
 }
 
-.post_image {
+.post_card {
     width: 30%;
     display: flex;
     flex-direction: column;
@@ -218,11 +218,11 @@ input {
 
 }
 
-.post_image button {
+.post_card button {
     background-color: #3a81ec;
 }
 
-.post_image img {
+.post_card img {
     border-radius: 10px;
 }
 
@@ -304,7 +304,7 @@ footer ul a:hover {
 
 /* styling about page */
 
-.main_page_images > p {
+.main_page > p {
     font-size: 24px;
     margin-inline: 8em;
     text-align: justify;
@@ -326,9 +326,52 @@ footer ul a:hover {
     font-size: 24px;
 }
 
+/* Styling the dashboard cards */
+
+.dashboard_container {
+    
+}
+
+.dashboard_cards {
+    display: flex;
+    justify-content: center;
+    gap: 1em;
+    flex-wrap: wrap;
+}
+
+.card {
+    position: relative;
+    background-color: #3a81ec;
+    min-width: 400px;
+    height: 200px;
+    border-radius: 10px;
+}
+
+.card > img {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    width: 30%;
+    height: auto;
+    border-radius: 10px;
+}
+
+.card_title {
+    
+    color: white;
+}
+
+.inside_card {
+    display: flex;
+    justify-content: flex-start;
+    gap: 0.5em;
+    margin: 1em 0 0 1em;
+    color: white;
+}
+
 /*Responssiveness*/
 @media (max-width: 1024px){
-    .main_page_images > p {
+    .main_page > p {
         margin-inline: 3em;
     }
 }
@@ -429,7 +472,7 @@ footer ul a:hover {
         flex-direction: column;
         align-items: center;
     }
-    .post_image {
+    .post_card {
         width: 90%;
     }
     .title {
@@ -448,7 +491,7 @@ footer ul a:hover {
     .footer_container {
         flex-wrap: wrap;
     }
-    .main_page_images > p {
+    .main_page > p {
         font-size: 16px;
     }
  }
@@ -458,7 +501,7 @@ footer ul a:hover {
         flex-direction: column;
         align-items: center;
     }
-    .post_image {
+    .post_card {
         width: 90%;
     }
     .post_info > p {
@@ -471,7 +514,7 @@ footer ul a:hover {
     .footer_container article{
         width: 60%;;
     }
-    .main_page_images > p {
+    .main_page > p {
         margin-inline: 2em;
         font-size: 12px;
     }
