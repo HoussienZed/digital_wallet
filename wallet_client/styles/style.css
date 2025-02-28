@@ -329,7 +329,7 @@ footer ul a:hover {
 /* Styling the dashboard cards */
 
 .dashboard_container {
-    
+    width: 100%;
 }
 
 .dashboard_cards {
@@ -337,6 +337,7 @@ footer ul a:hover {
     justify-content: center;
     gap: 1em;
     flex-wrap: wrap;
+    width: 100%;
 }
 
 .card {
@@ -494,6 +495,15 @@ footer ul a:hover {
     .main_page > p {
         font-size: 16px;
     }
+    .card {
+        min-width: 300px;
+        height: 150px;
+    }
+    .inside_card {
+        gap: 0.3em;
+        margin: 0.5em 0 0 0.5em;
+    }
+    
  }
 
 @media (max-width: 480px) { /* mobile phones */
@@ -516,6 +526,15 @@ footer ul a:hover {
     }
     .main_page > p {
         margin-inline: 2em;
+        font-size: 12px;
+    }
+    .card {
+        min-width: 200px;
+        height: 100px;
+    }
+    .inside_card {
+        gap: 0.15em;
+        margin: 0.25em 0 0 0.25em;
         font-size: 12px;
     }
  }
