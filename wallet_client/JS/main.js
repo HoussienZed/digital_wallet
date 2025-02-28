@@ -19,31 +19,3 @@ const closeNav = () => {
 
 openNavBtn.addEventListener('click', openNav);
 closeNavBtn.addEventListener('click', closeNav);
-
-
-document.getElementById("signupForm").addEventListener("submit", async (even) => {
-    event.preventDefault();
-
-    const formData = new FormData(this);
-
-    try {
-        const response = await fetch ('/wallet_server/signup.php', {
-            method:'POST',
-            body: formData
-        });
-
-        const result = await response.json();
-
-        if(result === "success") {
-            document.querySelector(".alert_message.success").style.display = "block";
-            document.querySelector(".alert_message.error").style.display = "none";
-        } else {
-            document.querySelector(".alert_message.success").style.display = "none";
-            document.querySelector(".alert_message.error").style.display = "block";
-            console.error(result.message);
-        }
-
-    } catch (error) {
-        console.error("Error:", error)
-    }
-})
