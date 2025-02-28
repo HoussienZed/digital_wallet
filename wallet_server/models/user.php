@@ -2,8 +2,8 @@
 
     include("../connection/connection.php");
 
-    class user {
-        public static function create_user ($fullName, $password, $repeatedPassword, $email, $phoneNumber, $address, $profilePicture) {
+    class User {
+        public static function createUser ($fullName, $password, $repeatedPassword, $email, $phoneNumber, $address, $profilePicture) {
 
             if($password !== $repeatedPassword) {
                 return ['status' => 'error', 'message' => 'Passwords do not match'];
