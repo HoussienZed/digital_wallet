@@ -396,6 +396,21 @@ footer ul a:hover {
     text-align: center;
 }
 
+/* Styling edit profile page*/
+
+.inside_form{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: flex-start;
+    gap: 1em;
+    font-size: 24px
+}
+
+.inside_form p{
+    margin-left: 3em;
+}
+
 /*Responssiveness*/
 @media (max-width: 1024px){
     .main_page > p {
@@ -529,7 +544,10 @@ footer ul a:hover {
         gap: 0.3em;
         margin: 0.5em 0 0 0.5em;
     }
-    
+    .inside_form{
+        gap: 1em;
+        font-size: 16px
+    }    
  }
 
 @media (max-width: 480px) { /* mobile phones */
@@ -571,4 +589,13 @@ footer ul a:hover {
     .transaction_history {
         overflow-x: auto;
     }
+    .inside_form{
+        font-size: 12px;
+    }
+    .inside_form .form_buttons button a {
+        font-size: 12px;
+        display: inline-block;
+        white-space: nowrap;
+    }
+    
 }
