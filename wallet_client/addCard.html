@@ -17,7 +17,6 @@
             </div>
             <div>
                 <ul class="nav_items">
-                    <li><a href="/wallet_client/internalTransactions.html">Transactions</a></li>
                     <li><a href="/wallet_client/about.html">About</a></li>
                     <li><a href="/wallet_client/help.html">Help</a></li>
                     <li class="nav_profile">
@@ -28,6 +27,7 @@
                             <li><a href="/wallet_client/profile.html">Profile</a></li>
                             <li><a href="/wallet_client/dashboard.html">Dashboard</a></li>
                             <li><a href="/wallet_client/addCard.html">Create Card</a></li>
+                            <li><a href="/wallet_client/transactions.html">Transactions</a></li>
                             <li><a href="/wallet_client/logout.html">Logout</a></li>
                         </ul>
                     </li>
@@ -38,6 +38,38 @@
             </div>
         </div>
     </nav>
+    
+    <div class="signinForm">
+        <div class="title">
+            <h1>Z DIGITAL WALLET</h1>
+        </div>
+        <div class="card_options">
+            <select name="type" id="" placeholder="Card Type">
+                <option value="mastercard">Mastercard</option>
+                <option value="visacard">Visacard</option>
+                <option value="debitcard">Debitcard</option>
+                <option value="platinuim">Platinuim</option>
+                <option value="titanuim">Titanuim</option>
+            </select>
+            
+            <select name="limit" id="" placeholder="Card Limit">
+                <option value="5000">5000</option>
+                <option value="10000">10000</option>
+                <option value="15000">15000</option>
+            </select>
+            
+            <select name="duration" id="" placeholder="Duration">
+                <option value="1 year">1 year</option>
+                <option value="3 years">3 years</option>
+                <option value="5 years">5 years</option>
+            </select>
+        </div>
+
+        <div class="form_buttons">
+            <button type="submit"><a href="/wallet_client/dashboard.html">Add Card</a></button>
+        </div>
+        
+    </div>
 
     <footer>
         <div class="footer_socials">

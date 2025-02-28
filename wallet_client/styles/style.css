@@ -124,13 +124,14 @@ nav button {
     gap: 1em;
     flex-wrap: wrap;
     width: 100%;
+    
     font-size: 16px;
     margin-top: 1em;
 }
 
 button {
     color: rgb(0, 0, 0);
-    background-color: #253ee04b;
+    background-color: #3a81ec;
     border-radius: 10px;
     padding: 1em;
     cursor: pointer;
@@ -138,11 +139,12 @@ button {
     box-shadow: -8px -8px 15px rgba(255, 255, 255, 0.1), 5px 5px 15px rgba(0, 0, 0, 0.2);
     font-size: 20px;
     width: 10em;
+    height: 3em;
     
 }
 
 .form_buttons a {
-    color: black;
+    color: white;
 }
 
 .form_buttons > a {
@@ -411,6 +413,28 @@ footer ul a:hover {
     margin-left: 3em;
 }
 
+/* add card styling */
+
+.card_options {
+    display: flex;
+    flex-direction: column;
+    gap: 1em;
+    margin-top: 2em;
+    
+}
+
+.card_options select {
+    height: 50px;
+    width: 500px;
+    font-size: 1em;
+    border-radius: 10px;
+    background-color: hsl(189, 81%, 92%);
+    box-shadow: -8px -8px 15px rgba(255, 255, 255, 0.1), 5px 5px 15px rgba(0, 0, 0, 0.2);
+    border: none;
+    padding: 1em;
+    outline: 0;
+}
+
 /*Responssiveness*/
 @media (max-width: 1024px){
     .main_page > p {
@@ -547,6 +571,9 @@ footer ul a:hover {
     .inside_form{
         gap: 1em;
         font-size: 16px
+    }
+    .card_options select {
+        width: 300px;
     }    
  }
 
@@ -597,5 +624,8 @@ footer ul a:hover {
         display: inline-block;
         white-space: nowrap;
     }
+    .card_options select {
+        width: 200px;
+    } 
     
 }
