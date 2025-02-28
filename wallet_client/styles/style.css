@@ -231,7 +231,6 @@ input {
 /* designing alert message */
 
 .alert_message {
-    display: hidden;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -242,11 +241,13 @@ input {
 }
 
 .alert_message.error{
+    display: none;
     color: #da0f3f;
     background-color: hsl(346, 87%, 46%, 15%);
 }
 
 .alert_message.success{
+    display: none;
     color: #00c476;
     background-color: hsl(156, 100%, 38%, 15%)
 }

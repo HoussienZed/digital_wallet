@@ -43,24 +43,24 @@
         </div>
 
         <div class="form_box">
-            <form action="" enctype="multipart/form-data"> <!-- enctype allows uploading the image as binary --> 
+            <form id="signupForm" action="/wallet_server/signup.php" method="post" enctype="multipart/form-data"> <!-- enctype allows uploading the image as binary --> 
                 <div class="alert_message error">
-                    <p>There an error in the data entered</p>
+                    <p>Data entered not valid</p>
                 </div>
                 <div class="alert_message success">
                     <p>Sign up successfully made!</p>
                 </div>
-                <input type="text" name="email/ phone number" placeholder="Full Name">
+                <input type="text" name="full_name" placeholder="Full Name" required>
                 <br>
-                <input type="password" name="password" placeholder="Password">
+                <input type="password" name="password" placeholder="Password" required>
                 <br>    
-                <input type="password" name="repeated_password" placeholder="Repeat Password">
+                <input type="password" name="repeated_password" placeholder="Repeat Password" required>
                 <br>    
-                <input type="text" name="email" placeholder="Email">
+                <input type="text" name="email" placeholder="Email" required>
                 <br>   
-                <input type="text" name="phone_number" placeholder="Phone Number">
+                <input type="text" name="phone_number" placeholder="Phone Number" required>
                 <br>   
-                <input type="text" name="address" placeholder="Address">
+                <input type="text" name="address" placeholder="Address" required>
                 <br>
                 <div class="form_control">
                     <label for="profile_Pic">Upload Profile Picture</label>
