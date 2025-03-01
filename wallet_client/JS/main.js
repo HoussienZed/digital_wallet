@@ -26,9 +26,9 @@ document.getElementById("signupForm").addEventListener("submit", async (event) =
 
     const formData = new FormData(event.target);
 
-    axios.post("/wallet_server/signup.php", formData , {
+    axios.post("../wallet_server/apis/createUser.php", formData , {
         headers: {
-            "Content-type" : "multipart/form-data"
+            "Content-Type" : "multipart/form-data"
         }
     })
     .then((response) => {
@@ -44,4 +44,10 @@ document.getElementById("signupForm").addEventListener("submit", async (event) =
             document.querySelector(".error_message").textContent = result.message;
         }
     })
+    .catch((error) => {
+        console.error("Error:", error);
+        document.querySelector(".alert_message.success").style.display = "none";
+        document.querySelector(".alert_message.error").style.display = "block";
+        document.querySelector(".error_message").textContent = "An error occurred. Please try again.";
+    });
 })

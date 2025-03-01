@@ -43,9 +43,9 @@
         </div>
 
         <div class="form_box">
-            <form id="signupForm" action="../wallet_server/signup.php" method="post" enctype="multipart/form-data"> <!-- enctype allows uploading the image as binary --> 
+            <form id="signupForm" method="post" enctype="multipart/form-data"> <!-- enctype allows uploading the image as binary --> 
                 <div class="alert_message error">
-                    <p class="error_message">Data entered not valid</p>
+                    <p class="error_message"></p>
                 </div>
                 <div class="alert_message success">
                     <p class="success_message">Sign up successfully made!</p>
@@ -67,7 +67,7 @@
                     <input type="file" name="profilePicture" accept="image/*">
                 </div>
                 <div class="form_buttons">
-                    <button type="submit"><a href="../wallet_client/signup.html">Sign Up</a></button>
+                    <button type="submit">Sign Up</button>
                     <a href="">Login Using Gmail</a>
                     <a href="../wallet_client/signin.html">Already have an account? Sign In</a>
                 </div>
