@@ -26,6 +26,8 @@ document.getElementById("signupForm").addEventListener("submit", async (event) =
 
     const formData = new FormData(event.target);
 
+    console.log(formData);
+
     axios.post("http://localhost/digital_wallet/wallet_server/apis/createUser.php", formData , {
         headers: {
             "Content-Type" : "multipart/form-data"
@@ -33,6 +35,8 @@ document.getElementById("signupForm").addEventListener("submit", async (event) =
     })
     .then((response) => {
         const result = response.data;
+
+        console.log(result)
 
         if(result.status === "success") {
             document.querySelector(".alert_message.success").style.display = "block"; //i may delete this line later

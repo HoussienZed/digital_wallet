@@ -5,10 +5,12 @@
     $user = "root";
     $password = "";
 
-    $mysqli = new mysqli($host, $user, $password, $name);
+    $conn = new mysqli($host, $user, $password, $name);
 
-    if(!isset($mysqli)) {
-        die("connection is successful");
+    if($conn->connect_error) {
+        die("connection failed");
     }
+
+    return $conn;
 
 ?>

@@ -1,15 +1,15 @@
 <?php
 
-    include("../connection/connection.php");
+    $conn = include("../connection/connection.php");
 
     class User {
         private $conn;
 
         public function __construct($conn) {
-            $this->conn = $conn;
+            $this->conn = $conn;  // Assign the database connection
         }
 
-        public static function createUser ($conn, $fullName, $password, $repeatedPassword, $email, $phoneNumber, $address, $profilePicture) {
+        public static function createUser ($conn,$fullName, $password, $repeatedPassword, $email, $phoneNumber, $address, $profilePicture) {
 
             if($password !== $repeatedPassword) {
                 return ['status' => 'error', 'message' => 'Passwords do not match'];
@@ -30,6 +30,8 @@
                     return ['status' => 'error', 'message' => 'Failed to upload profile pictaure'];
                 }
             }
+
+            echo ($profilePicturePath);
 
             $query = $conn->prepare("INSERT INTO users (full_name, email, password, phone_number, address, profile_picture) VALUES (?, ?, ?, ?, ?, ?)");
             $query -> bind_param("ssssss", $fullName, $email, $hashedPassword, $phoneNumber, $address, $profilePicturePath);
