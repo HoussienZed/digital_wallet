@@ -24,36 +24,38 @@ openNavBtn.addEventListener('click', openNav);
 closeNavBtn.addEventListener('click', closeNav);
 
 
+document.addEventListener("DOMContentLoaded", () => {
+    // Check if we are on the signup page by checking the URL
+    if (window.location.pathname.includes("signup.html")) { 
+        /* const signUpForm = document.getElementById("signUpForm"); */
+        signUpForm.addEventListener("submit", async (event) => {
+            event.preventDefault(); // Prevent the form from submitting the default way
 
-signUpForm.addEventListener("submit", async (event) => {
-    event.preventDefault(); // Prevent the form from submitting the default way
+            const formData = new FormData(event.target);
 
-    const formData = new FormData(event.target);
+            console.log(formData);
 
-    console.log(formData);
+            axios.post("http://localhost/digital_wallet/wallet_server/apis/createUser.php", formData , {
+                headers: {
+                    "Content-Type" : "multipart/form-data"
+                }
+            })
+            .then((response) => {
+                const result = response.data;
 
-    axios.post("http://localhost/digital_wallet/wallet_server/apis/createUser.php", formData , {
-        headers: {
-            "Content-Type" : "multipart/form-data"
-        }
-    })
-    .then((response) => {
-        const result = response.data;
-
-        if(result.status === "success") {
-            //here i have to change the style of the success registration in signin page
-            signUpSuccessAlert.style.display = "block";
-            signUpSuccessAlert.textContent = result.message;
-            window.location.href = "../wallet_client/signin.html";
-        } else {
-            document.getElementById("signUpErrorAlert").style.display = "block";
-            document.getElementById("signUpErrorAlert").textContent = result.message;
-        }
-    })
-    /* .catch((error) => {
-        console.error("Error:", error);
-        document.querySelector(".alert_message.success").style.display = "none";
-        document.querySelector(".alert_message.error").style.display = "block";
-        document.querySelector(".error_message").textContent = "An error occurred. Please try again.";
-    }); */
+                if(result.status === "success") {
+                    window.location.href = "../wallet_client/signin.html";
+                } else {
+                    document.getElementById("signUpErrorAlert").style.display = "block";
+                    document.getElementById("signUpErrorAlert").textContent = result.message;
+                }
+            })
+            /* .catch((error) => {
+                console.error("Error:", error);
+                document.querySelector(".alert_message.success").style.display = "none";
+                document.querySelector(".alert_message.error").style.display = "block";
+                document.querySelector(".error_message").textContent = "An error occurred. Please try again.";
+            }); */
+        })
+    }
 })
