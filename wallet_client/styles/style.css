@@ -230,27 +230,19 @@ input {
 
 /* designing alert message */
 
-.alert_message {
-    display: flex;
-    justify-content: center;
-    align-items: center;
+.alert_error{
     border-radius: 10px; 
     height: 50px;
     margin-bottom: 1.5em;
     font-size: 20px;
-}
-
-.error{
-    display: none;
     color: #da0f3f;
     background-color: hsl(346, 87%, 46%, 15%);
+    text-align: center;
+    padding-top: 0.4em;
+    font-weight: 500;
+    display: none;
 }
 
-.success{
-    display: none;
-    color: #00c476;
-    background-color: hsl(156, 100%, 38%, 15%)
-}
 /* footer styling */
 
 footer {

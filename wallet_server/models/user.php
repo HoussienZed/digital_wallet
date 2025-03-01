@@ -6,10 +6,21 @@
 
         public static function createUser ($conn,$fullName, $password, $repeatedPassword, $email, $phoneNumber, $address, $profilePicture) {
 
+            if(empty($fullname) || empty($password) || empty($repeatedPassword) || empty($email) || empty($phoneNumber) || empty($address)) {
+                return ['status' => 'error', 'message' => 'All fields are required'];
+            }
+
             if($password !== $repeatedPassword) {
                 return ['status' => 'error', 'message' => 'Passwords do not match'];
             }
 
+            $emailCheckQuery = $conn->prepare("SELECT * FROM users WHERE email = ?");
+            $emailCheckQuery->bind_param("s", $email);
+            
+            if($emailCheckQuery->execute()) {
+                return ['status' => 'error', 'message' => 'Email is already registered'];
+            }
+            
             $hashedPassword = password_hash($password, PASSWORD_DEFAULT);
             
             $uploadDir = "../uploads/";
@@ -40,6 +51,10 @@
             } else {
                 return ['status' => 'error', 'message' => 'User not registered successfully'];
             }
+        }
+
+        public static function signIn ($conn, $emailOrPhoneNumber, $password) {
+
         }
     }
 
