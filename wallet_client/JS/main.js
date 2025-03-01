@@ -26,7 +26,7 @@ document.getElementById("signupForm").addEventListener("submit", async (event) =
 
     const formData = new FormData(event.target);
 
-    axios.post("../wallet_server/apis/createUser.php", formData , {
+    axios.post("http://localhost/digital_wallet/wallet_server/apis/createUser.php", formData , {
         headers: {
             "Content-Type" : "multipart/form-data"
         }

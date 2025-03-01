@@ -9,7 +9,7 @@
             $this->conn = $conn;
         }
 
-        public static function createUser ($fullName, $password, $repeatedPassword, $email, $phoneNumber, $address, $profilePicture) {
+        public static function createUser ($conn, $fullName, $password, $repeatedPassword, $email, $phoneNumber, $address, $profilePicture) {
 
             if($password !== $repeatedPassword) {
                 return ['status' => 'error', 'message' => 'Passwords do not match'];
@@ -17,7 +17,7 @@
 
             $hashedPassword = password_hash($password, PASSWORD_DEFAULT);
             
-            $uploadDir = "uploads/";
+            $uploadDir = "../uploads/";
             $defaultImage =  "../wallet_client/assets/illustration-businessman_53876-5856.avif";
 
             $profilePicturePath = $defaultImage;
@@ -31,7 +31,7 @@
                 }
             }
 
-            $query = $mysqli->prepare("INSERT INTO users (full_name, email, password, phone_number, address, profile_picture) VALUES (?, ?, ?, ?, ?, ?)");
+            $query = $conn->prepare("INSERT INTO users (full_name, email, password, phone_number, address, profile_picture) VALUES (?, ?, ?, ?, ?, ?)");
             $query -> bind_param("ssssss", $fullName, $email, $hashedPassword, $phoneNumber, $address, $profilePicturePath);
             
             if($query->execute()) {
