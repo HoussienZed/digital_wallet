@@ -45,8 +45,11 @@
         <br>
 
         <div class="form_box">
-            <form action=""> 
-                <div class="alert_message error">
+            <form action="">
+                <div id="signUpSuccessAlert" class="alert_message success">
+                    <p>Sign up successfully made!</p>
+                </div> 
+                <div id="signUpErrorAlert" class="alert_message error">
                     <p>Please enter valid email and password.</p>
                 </div>  
                 <input type="text" name="emailOrPhoneNumber" placeholder="Email/ Phone Number">
@@ -128,6 +131,6 @@
         </div>
     </footer>
     
-    <script src="../wallet_client/JS/main.js"></script>
+    <script src="../wallet_client/JS/main.js" defer></script>
 </body>
 </html>

@@ -1,6 +1,9 @@
 const navItems = document.querySelector('.nav_items');
 const openNavBtn = document.querySelector('#open_nav_btn');
 const closeNavBtn = document.querySelector('#close_nav_btn');
+const signUpForm = document.getElementById("signupForm");
+const signUpSuccessAlert = document.getElementById("signUpSuccessAlert");
+const signUpErrorAlert = document.getElementById("signUpErrorAlert");
 
 
 //open dropdown
@@ -21,7 +24,8 @@ openNavBtn.addEventListener('click', openNav);
 closeNavBtn.addEventListener('click', closeNav);
 
 
-document.getElementById("signupForm").addEventListener("submit", async (event) => {
+
+signUpForm.addEventListener("submit", async (event) => {
     event.preventDefault(); // Prevent the form from submitting the default way
 
     const formData = new FormData(event.target);
@@ -36,22 +40,20 @@ document.getElementById("signupForm").addEventListener("submit", async (event) =
     .then((response) => {
         const result = response.data;
 
-        console.log(result)
-
         if(result.status === "success") {
-            document.querySelector(".alert_message.success").style.display = "block"; //i may delete this line later
-            document.querySelector(".alert_message.error").style.display = "none";
-            document.querySelector(".success_message").textContent = result.message;
+            //here i have to change the style of the success registration in signin page
+            signUpSuccessAlert.style.display = "block";
+            signUpSuccessAlert.textContent = result.message;
+            window.location.href = "../wallet_client/signin.html";
         } else {
-            document.querySelector(".alert_message.success").style.display = "none"; //i may delete this line later
-            document.querySelector(".alert_message.error").style.display = "block";
-            document.querySelector(".error_message").textContent = result.message;
+            document.getElementById("signUpErrorAlert").style.display = "block";
+            document.getElementById("signUpErrorAlert").textContent = result.message;
         }
     })
-    .catch((error) => {
+    /* .catch((error) => {
         console.error("Error:", error);
         document.querySelector(".alert_message.success").style.display = "none";
         document.querySelector(".alert_message.error").style.display = "block";
         document.querySelector(".error_message").textContent = "An error occurred. Please try again.";
-    });
+    }); */
 })

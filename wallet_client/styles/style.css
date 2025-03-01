@@ -240,13 +240,13 @@ input {
     font-size: 20px;
 }
 
-.alert_message.error{
+.error{
     display: none;
     color: #da0f3f;
     background-color: hsl(346, 87%, 46%, 15%);
 }
 
-.alert_message.success{
+.success{
     display: none;
     color: #00c476;
     background-color: hsl(156, 100%, 38%, 15%)

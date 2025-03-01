@@ -14,6 +14,10 @@
     $profilePicture = $_FILES["profilePicture"];
 
     $result = User::createUser($conn, $fullName, $password, $repeatedPassword, $email, $phoneNumber, $address, $profilePicture);
+    
+    /* if($result["status"] === "success") {
+        header("Location: ../wallet_client/signin.html");
+    } */
 
     echo json_encode($result);
 

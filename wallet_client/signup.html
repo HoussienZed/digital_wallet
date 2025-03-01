@@ -44,11 +44,8 @@
 
         <div class="form_box">
             <form id="signupForm" method="post" enctype="multipart/form-data"> <!-- enctype allows uploading the image as binary --> 
-                <div class="alert_message error">
-                    <p class="error_message"></p>
-                </div>
-                <div class="alert_message success">
-                    <p class="success_message">Sign up successfully made!</p>
+                <div id="signUpErrorAlert" class="alert_message error">
+                    <p>Error</p>
                 </div>
                 <input type="text" name="fullName" placeholder="Full Name" required>
                 <br>
@@ -142,7 +139,7 @@
     </footer>
 
     <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
-    <script src="../wallet_client/JS/main.js"></script>
+    <script src="../wallet_client/JS/main.js" defer></script>
 
 </body>
 
