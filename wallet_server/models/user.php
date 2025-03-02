@@ -54,7 +54,28 @@
         }
 
         public static function signIn ($conn, $emailOrPhoneNumber, $password) {
+            
+            if (filter_var($emailOrPhoneNumber, FILTER_VALIDATE_EMAIL)) {
+                $credentialsCheckQuery = $conn->prepare("SELECT * FROM user WHERE email = ?");
+            } else {
+                $credentialsCheckQuery = $conn->prepare("SELECT * FROM user WHERE phone_number = ?");
+            }
 
+            $credentialsCheckQuery->bind_param("s", $emailOrPhoneNumber);
+            $credentialsCheckQuery->execute();
+
+            $result = $credentialsCheckQuery->get_result();
+            $user = $result->fetch_assoc(); //$user is the record searched for in the db
+
+            if($result->nume_rows > 0) {
+                if(password_verify($password, $user['password'])) {
+                    return ['status' => 'success', 'message', 'login successfully'];
+                } else {
+                    return ['status' => 'error', 'message', 'Password doesnt match email/phone number'];
+                }
+            } else {
+                return ['status' => 'error', 'message' => 'Email/ phone number not found'];
+            }
         }
     }
 
