@@ -4,6 +4,8 @@ const closeNavBtn = document.querySelector('#close_nav_btn');
 const signUpForm = document.getElementById("signupForm");
 const signUpSuccessAlert = document.getElementById("signUpSuccessAlert");
 const signUpErrorAlert = document.getElementById("signUpErrorAlert");
+/* const signInPage = document.getElementById("signInPage");
+const signUpPage = document.getElementById("signUpPage") */;
 
 
 //open dropdown
@@ -26,7 +28,7 @@ closeNavBtn.addEventListener('click', closeNav);
 
 document.addEventListener("DOMContentLoaded", () => {
     // Check if we are on the signup page by checking the URL
-    if (window.location.pathname.includes("signup.html")) { 
+    if (document.body.id === "signUpPage") { 
         /* const signUpForm = document.getElementById("signUpForm"); */
         signUpForm.addEventListener("submit", async (event) => {
             event.preventDefault(); // Prevent the form from submitting the default way
@@ -56,6 +58,15 @@ document.addEventListener("DOMContentLoaded", () => {
                 document.querySelector(".alert_message.error").style.display = "block";
                 document.querySelector(".error_message").textContent = "An error occurred. Please try again.";
             }); */
+        })
+    }
+})
+
+
+document.addEventListener("DOMContentLoaded", () => {
+    if(window.location.pathname.includes("signin.html")) {
+        signInForm.addEventListener("submit", () => {
+
         })
     }
 })

@@ -4,11 +4,11 @@
 
     class User {
 
-        public static function createUser ($conn,$fullName, $password, $repeatedPassword, $email, $phoneNumber, $address, $profilePicture) {
+        public static function createUser ($conn, $fullName, $password, $repeatedPassword, $email, $phoneNumber, $address, $profilePicture) {
 
-            if(empty($fullname) || empty($password) || empty($repeatedPassword) || empty($email) || empty($phoneNumber) || empty($address)) {
+           if(empty($fullName) || empty($password) || empty($repeatedPassword) || empty($email) || empty($phoneNumber) || empty($address)) {
                 return ['status' => 'error', 'message' => 'All fields are required'];
-            }
+            } 
 
             if($password !== $repeatedPassword) {
                 return ['status' => 'error', 'message' => 'Passwords do not match'];
@@ -16,10 +16,15 @@
 
             $emailCheckQuery = $conn->prepare("SELECT * FROM users WHERE email = ?");
             $emailCheckQuery->bind_param("s", $email);
+            $emailCheckQuery->execute();
+
             
-            if($emailCheckQuery->execute()) {
+            $result = $emailCheckQuery->get_result();
+            $user = $result->fetch_assoc();
+
+            if($result->num_rows > 0) {
                 return ['status' => 'error', 'message' => 'Email is already registered'];
-            }
+            } 
             
             $hashedPassword = password_hash($password, PASSWORD_DEFAULT);
             
@@ -28,8 +33,6 @@
 
             $profilePicturePath = $defaultImage;
 
-
-            // $profilePicture = $_FILES["profilePicture"] which comtains the data about the uploaded file
             if($profilePicture && $profilePicture['error'] === 0) { //if no picture uploaded then $profilePicture["error"] = 4 and the code below wont execute
                 $fileName = uniqid() . '_' . basename($profilePicture['name']); // to generate a unique name 
                 $profilePicturePath = $uploadDir . $fileName;
@@ -67,7 +70,7 @@
             $result = $credentialsCheckQuery->get_result();
             $user = $result->fetch_assoc(); //$user is the record searched for in the db
 
-            if($result->nume_rows > 0) {
+            if($result->num_rows > 0) {
                 if(password_verify($password, $user['password'])) {
                     return ['status' => 'success', 'message', 'login successfully'];
                 } else {
