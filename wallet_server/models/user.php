@@ -1,5 +1,8 @@
 <?php
 
+    use Firebase\JWT\JWT;
+    use Firebase\JWT\KEY;
+
     $conn = include("../connection/connection.php");
 
     class User {
@@ -75,6 +78,19 @@
                 $user = $result->fetch_assoc(); //$user is the record searched for in the db
 
                 if(password_verify($password, $user['password'])) {
+
+                    //generate JWT
+                    $secretKey = 'your_secret_key'; //replace with a strong key
+                    $payload = [
+                        'iss' => 'your_issuer',
+                        'aud' => 'your_audience',
+                        'iat' => time(),
+                        'exp' => time() + 600,
+                        'userId' => $user['id']
+                    ];
+
+                    $jwt = JWT::encode($payload, $secretKey, 'HS256');
+
                     return ['status' => 'success', 'message' => 'login successfully'];
                 } else {
                     return ['status' => 'error', 'message' => 'Password doesnt match email/phone number'];

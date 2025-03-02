@@ -40,7 +40,7 @@ document.addEventListener("DOMContentLoaded", () => {
             axios.post("http://localhost/digital_wallet/wallet_server/apis/createUser.php", formData , {
                 headers: {
                     "Content-Type" : "multipart/form-data"
-                }
+                } //axios already parses the response makimg it json so no need to add .json() method
             })
             .then((response) => {
 
@@ -81,6 +81,10 @@ document.addEventListener("DOMContentLoaded", () => {
                 const result = response.data;
 
                 if(result.status === "success") {
+                    
+                    //store the token in local storage 
+                    localStorage.setItem('token', data.token);
+
                     window.location.href = "../wallet_client/dashboard.html";
                 } else {
                     document.getElementById("signInErrorAlert").style.display = "block";
