@@ -91,11 +91,16 @@ nav button {
     visibility: hidden;
     opacity: 0;
     transition: all 300ms ease;
+    width: 300%;
 } 
 
 .nav_profile:hover > ul {
     visibility: visible;
     opacity: 1;
+}
+
+.nav_profile ul li{
+    width: 100%;
 }
 
 .nav_profile ul li a {
@@ -116,6 +121,11 @@ nav button {
     border-radius: 50%;
     border: 0.2rem solid black;
 }
+
+.nav_profile .signed_in_nav_links {
+    display: none;
+}
+
 
 .form_buttons {
     display: flex;
