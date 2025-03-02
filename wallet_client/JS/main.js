@@ -2,8 +2,10 @@ const navItems = document.querySelector('.nav_items');
 const openNavBtn = document.querySelector('#open_nav_btn');
 const closeNavBtn = document.querySelector('#close_nav_btn');
 const signUpForm = document.getElementById("signupForm");
+const signInForm = document.getElementById("signInForm");
 const signUpSuccessAlert = document.getElementById("signUpSuccessAlert");
 const signUpErrorAlert = document.getElementById("signUpErrorAlert");
+const signInErrorAlert = document.getElementById("signInErrorAlert");
 /* const signInPage = document.getElementById("signInPage");
 const signUpPage = document.getElementById("signUpPage") */;
 
@@ -35,14 +37,13 @@ document.addEventListener("DOMContentLoaded", () => {
 
             const formData = new FormData(event.target);
 
-            console.log(formData);
-
             axios.post("http://localhost/digital_wallet/wallet_server/apis/createUser.php", formData , {
                 headers: {
                     "Content-Type" : "multipart/form-data"
                 }
             })
             .then((response) => {
+
                 const result = response.data;
 
                 if(result.status === "success") {
@@ -64,9 +65,34 @@ document.addEventListener("DOMContentLoaded", () => {
 
 
 document.addEventListener("DOMContentLoaded", () => {
-    if(window.location.pathname.includes("signin.html")) {
-        signInForm.addEventListener("submit", () => {
+    if (document.body.id === "signInPage" && signInForm) { 
+        signInForm.addEventListener("submit", async (event) => {
+            event.preventDefault(); // Prevent the form from submitting the default way
 
+            const formData = new FormData(event.target);
+
+            axios.post("http://localhost/digital_wallet/wallet_server/apis/signin.php", formData/*  , {
+                headers: {
+                    "Content-Type" : "application/json"
+                }
+            } */)
+            .then((response) => {
+
+                const result = response.data;
+
+                if(result.status === "success") {
+                    window.location.href = "../wallet_client/dashboard.html";
+                } else {
+                    document.getElementById("signInErrorAlert").style.display = "block";
+                    document.getElementById("signInErrorAlert").textContent = result.message;
+                }
+            })
+            /* .catch((error) => {
+                console.error("Error:", error);
+                document.querySelector(".alert_message.success").style.display = "none";
+                document.querySelector(".alert_message.error").style.display = "block";
+                document.querySelector(".error_message").textContent = "An error occurred. Please try again.";
+            }); */
         })
     }
 })

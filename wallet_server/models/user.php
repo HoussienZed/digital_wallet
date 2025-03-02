@@ -20,9 +20,10 @@
 
             
             $result = $emailCheckQuery->get_result();
-            $user = $result->fetch_assoc();
+            
 
             if($result->num_rows > 0) {
+                $user = $result->fetch_assoc();
                 return ['status' => 'error', 'message' => 'Email is already registered'];
             } 
             
@@ -59,22 +60,24 @@
         public static function signIn ($conn, $emailOrPhoneNumber, $password) {
             
             if (filter_var($emailOrPhoneNumber, FILTER_VALIDATE_EMAIL)) {
-                $credentialsCheckQuery = $conn->prepare("SELECT * FROM user WHERE email = ?");
+                $credentialsCheckQuery = $conn->prepare("SELECT * FROM users WHERE email = ?");
             } else {
-                $credentialsCheckQuery = $conn->prepare("SELECT * FROM user WHERE phone_number = ?");
+                $credentialsCheckQuery = $conn->prepare("SELECT * FROM users WHERE phone_number = ?");
             }
 
             $credentialsCheckQuery->bind_param("s", $emailOrPhoneNumber);
             $credentialsCheckQuery->execute();
 
             $result = $credentialsCheckQuery->get_result();
-            $user = $result->fetch_assoc(); //$user is the record searched for in the db
 
             if($result->num_rows > 0) {
+                
+                $user = $result->fetch_assoc(); //$user is the record searched for in the db
+
                 if(password_verify($password, $user['password'])) {
-                    return ['status' => 'success', 'message', 'login successfully'];
+                    return ['status' => 'success', 'message' => 'login successfully'];
                 } else {
-                    return ['status' => 'error', 'message', 'Password doesnt match email/phone number'];
+                    return ['status' => 'error', 'message' => 'Password doesnt match email/phone number'];
                 }
             } else {
                 return ['status' => 'error', 'message' => 'Email/ phone number not found'];

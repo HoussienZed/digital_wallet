@@ -3,7 +3,7 @@
     $conn = include("../connection/connection.php");
     include("../models/user.php");
 
-    header('Content-Type: application/json');
+    header('Content-Type: multipart/form-data');
 
     $fullName = htmlspecialchars($_POST["fullName"]);
     $password = $_POST["password"];

@@ -45,21 +45,21 @@
         <br>
 
         <div class="form_box">
-            <form id="signinForm">
+            <form id="signInForm" method="post">
                <!--  <div id="signUpSuccessAlert" class="alert_message success">
                     <p>Sign up successfully made!</p>
                 </div>  -->
-                <div id="signUpErrorAlert" class="alert_error">
-                    <p>Please enter valid email and password.</p>
+                <div id="signInErrorAlert" class="alert_error">
+                    <p>Error</p>
                 </div>  
                 <input type="text" name="emailOrPhoneNumber" placeholder="Email/ Phone Number">
                 <br>
                 <input type="password" name="password" placeholder="Password">
                 <br>
                 <div class="form_buttons">
-                    <button type="submit"><a href="">Login</a></button>
-                    <button type="submit"><a href="../wallet_client/signup.html">Sign Up</a></button>
-                    <a href="">Login Using Gmail</a>
+                    <button type="submit">Login</button>
+                    <!-- <button type="submit"><a href="../wallet_client/signup.html">Sign Up</a></button>
+                    <a href="">Login Using Gmail</a> -->
                 </div>
             </form>
         </div>
@@ -131,6 +131,7 @@
         </div>
     </footer>
     
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
     <script src="../wallet_client/JS/main.js" defer></script>
 </body>
 </html>

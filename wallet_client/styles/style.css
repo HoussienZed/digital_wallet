@@ -232,7 +232,7 @@ input {
 
 .alert_error{
     border-radius: 10px; 
-    height: 50px;
+    height: fit-content;
     margin-bottom: 1.5em;
     font-size: 20px;
     color: #da0f3f;
