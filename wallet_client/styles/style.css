@@ -110,8 +110,13 @@ nav button {
     width: 100%;
 }
 
-.nav_profile ul li:last-child a {
+.nav_profile ul li:last-child  {
     background-color: rgba(255, 0, 0, 0.758);
+    padding: 1rem;
+    color: #fff;
+    display: block;
+    width: 100%;
+
 }
 
 .avatar {

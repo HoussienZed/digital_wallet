@@ -14,16 +14,4 @@
             echo json_encode(['status' => 'unauthorized']);
         }
     }
-
-    /* if(isset($_COOKIE['auth_token']) && !empty($_SESSION['token'])) {
-        $decoded = verifyToken($_COOKIE['auth_token']);
-
-        if($decoded) {
-            echo json_encode(['status' => 'user is authorized']);
-        } else {
-            echo json_encode(['status' => 'unauthorized']);
-        }
-    }  else {
-        echo json_encode(['status' => 'unauthorized']);
-    } */
 ?>
