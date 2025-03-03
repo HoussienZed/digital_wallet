@@ -37,17 +37,22 @@ document.addEventListener("DOMContentLoaded", () => {
 
             const formData = new FormData(event.target);
 
+            console.log("event loaded successfully");
+
             axios.post("http://localhost/digital_wallet/wallet_server/apis/createUser.php", formData , {
                 headers: {
                     "Content-Type" : "multipart/form-data"
-                } //axios already parses the response makimg it json so no need to add .json() method
+                } 
             })
             .then((response) => {
-
+                //axios already parses the response makimg it json so no need to add .json() method
                 const result = response.data;
 
+                console.log(typeof(result));
+
                 if(result.status === "success") {
-                    window.location.href = "../wallet_client/signin.html";
+                    console.log("iam above window .location");
+                    window.location.href = "http://localhost/digital_wallet/wallet_client/signin.html";
                 } else {
                     document.getElementById("signUpErrorAlert").style.display = "block";
                     document.getElementById("signUpErrorAlert").textContent = result.message;
@@ -65,26 +70,26 @@ document.addEventListener("DOMContentLoaded", () => {
 
 
 document.addEventListener("DOMContentLoaded", () => {
-    if (document.body.id === "signInPage" && signInForm) { 
+    if (document.body.id === "signInPage"/*  && signInForm */) { 
         signInForm.addEventListener("submit", async (event) => {
             event.preventDefault(); // Prevent the form from submitting the default way
 
             const formData = new FormData(event.target);
 
+
+            //no need to pass the content type because axios by default deal with it as json object
             axios.post("http://localhost/digital_wallet/wallet_server/apis/signin.php", formData/*  , {
                 headers: {
                     "Content-Type" : "application/json"
                 }
             } */)
             .then((response) => {
-
+                //axios already parses the response makimg it json so no need to add .json() method
                 const result = response.data;
 
-                if(result.status === "success") {
-                    
-                    //store the token in local storage 
-                    localStorage.setItem('token', data.token);
+                console.log(result);
 
+                if(result.status === "success") {
                     window.location.href = "../wallet_client/dashboard.html";
                 } else {
                     document.getElementById("signInErrorAlert").style.display = "block";

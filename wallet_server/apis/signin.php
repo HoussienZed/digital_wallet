@@ -1,15 +1,19 @@
 <?php
 
-$conn = include("../connection/connection.php");
-include("../models/user.php");
+    $conn = include("../connection/connection.php");
+    include("C:/xampp/htdocs/digital_wallet/wallet_server/models/user.php");
 
-header('Content-Type: application/json');
+    header('Content-Type: application/json');
 
-$emailOrPhoneNumber = htmlspecialchars($_POST["emailOrPhoneNumber"]);
-$password = $_POST["password"];
+    $emailOrPhoneNumber = htmlspecialchars($_POST["emailOrPhoneNumber"]);
+    $password = $_POST["password"];
 
-$result = User::signIn($conn, $emailOrPhoneNumber, $password);
+    /* echo($emailOrPhoneNumber); */
 
-echo json_encode($result);
+    /* return (["status" => "debug", "message" => "parameters entered correctly"]); */
+
+    $result = User::signIn($conn, $emailOrPhoneNumber, $password);
+
+    echo json_encode($result);
 
 ?>

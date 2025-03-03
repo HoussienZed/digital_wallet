@@ -1,6 +1,7 @@
 <?php
 
-include('../vendor/autoload.php');
+/* include('../digital_wallet/vendor/autoload.php');
+ */include('C:/xampp/htdocs/digital_wallet/vendor/autoload.php');
 
 use Firebase\JWT\JWT;
 use Firebase\JWT\KEY;

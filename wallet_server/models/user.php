@@ -4,6 +4,8 @@
     use Firebase\JWT\KEY;
 
     $conn = include("../connection/connection.php");
+    require_once '../utils/jwt.php';
+    include('C:/xampp/htdocs/digital_wallet/vendor/autoload.php');
 
     class User {
 
@@ -54,13 +56,15 @@
 
             //the returned associative array is sent as json object to the frontend
             if($query->execute()) { // $query->execute() returns true if query executed correctly and false if not
-                return ['status' => 'success', 'message' => 'User registered successfully'];
+                return ["status" => "success", 'message' => 'User registered successfully'];
             } else {
                 return ['status' => 'error', 'message' => 'User not registered successfully'];
             }
         }
 
         public static function signIn ($conn, $emailOrPhoneNumber, $password) {
+
+            session_start();
             
             if (filter_var($emailOrPhoneNumber, FILTER_VALIDATE_EMAIL)) {
                 $credentialsCheckQuery = $conn->prepare("SELECT * FROM users WHERE email = ?");
@@ -79,19 +83,24 @@
 
                 if(password_verify($password, $user['password'])) {
 
+                    
+
+                    
                     //generate JWT
-                    $secretKey = 'your_secret_key'; //replace with a strong key
+                    $secretKey = 'houssien_zeineddine'; //used to sign the JWT preferred not to be hard-coded, will learn how later
                     $payload = [
-                        'iss' => 'your_issuer',
-                        'aud' => 'your_audience',
+                        'iss' => 'zwallet.com', //application name or domain
+                        'aud' => 'server', //the recipient of the jwt
                         'iat' => time(),
                         'exp' => time() + 600,
                         'userId' => $user['id']
                     ];
 
-                    $jwt = JWT::encode($payload, $secretKey, 'HS256');
+                    $token = JWT::encode($payload, $secretKey, 'HS256');
 
-                    return ['status' => 'success', 'message' => 'login successfully'];
+                    $_SESSION['token'] = $token;
+
+                    return ['status' => 'success', 'message' => 'login successfully'/* , 'token' => '$token' */];
                 } else {
                     return ['status' => 'error', 'message' => 'Password doesnt match email/phone number'];
                 }

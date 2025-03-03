@@ -1,5 +1,7 @@
 <?php
 
+//this apin is functioning well on postman
+
     $conn = include("../connection/connection.php");
     include("../models/user.php");
 
