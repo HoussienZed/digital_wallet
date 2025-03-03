@@ -10,6 +10,14 @@ const signedInNavLinks = document.querySelectorAll("signed_in_nav_links");
 
 const logoutButton = document.getElementById("logoutButton");
 
+//declaring profile info elements
+const fullname = document.getElementById('fullname');
+const email = document.getElementById('email');
+const phoneNumber = document.getElementById('phoneNumber');
+const address = document.getElementById('address');
+const profilePicture = document.getElementById('profilePicture');
+
+let isUserLoggedIn = false;
 
 //open dropdown
 const openNav = () => {
@@ -49,10 +57,7 @@ document.addEventListener("DOMContentLoaded", () => {
                 //axios already parses the response makimg it json so no need to add .json() method
                 const result = response.data;
 
-                console.log(typeof(result));
-
                 if(result.status === "success") {
-                    console.log("iam above window .location");
                     window.location.href = "http://localhost/digital_wallet/wallet_client/signin.html";
                 } else {
                     document.getElementById("signUpErrorAlert").style.display = "block";
@@ -64,22 +69,30 @@ document.addEventListener("DOMContentLoaded", () => {
 })
 
 
+function updateUserProfile(user) {
+    fullname.innerText = user.fullname;
+    email.textContent = user.email;
+    phoneNumber.textContent = user.phoneNumber;
+    address.textContent = user.address;
+    profilePicture.src = user.profilePicture; /* || "default.png"; */ // Use default image if none exists
+}
+
+
+
 document.addEventListener("DOMContentLoaded", () => {
-    if (document.body.id === "signInPage"/*  && signInForm */) { 
+    if (document.body.id === "signInPage") { 
         signInForm.addEventListener("submit", async (event) => {
             event.preventDefault(); // Prevent the form from submitting the default way
 
             const formData = new FormData(event.target);
-
-            console.log("message before calling api");
-
             //no need to pass the content type because axios by default deal with it as json object
             axios.post("http://localhost/digital_wallet/wallet_server/apis/signin.php", formData)
             .then((response) => {
+                
                 //axios already parses the response makimg it json so no need to add .json() method
                 const result = response.data;
-                console.log(result);
-                console.log("iam in sign in event in js");
+                console.log(result.userId);
+            
                 if(result.status === "success") {
                     window.location.href = "../wallet_client/dashboard.html";
                 } else {

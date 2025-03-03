@@ -113,6 +113,18 @@
                 return ['status' => 'error', 'message' => 'Email/ phone number not found'];
             }
         }
+
+        public static function getUserById($conn, $userId) {
+            $query = $conn -> prepare("SELECT fullname, email, phoneNumber, address, profilePicture FROM users WHERE id = ?");
+            $query->bind_param('i', $userId);
+
+            $query->execute();
+
+            $result = $query->get_result();
+            $user = $result->fetch_assoc();
+
+            return $user;
+        }
     }
 
 ?>
