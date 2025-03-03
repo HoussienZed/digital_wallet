@@ -1,16 +1,27 @@
 <?php
 
 /* include('../digital_wallet/vendor/autoload.php');
- */include('C:/xampp/htdocs/digital_wallet/vendor/autoload.php');
+ */require_once 'C:/xampp/htdocs/digital_wallet/vendor/autoload.php';
 
 use Firebase\JWT\JWT;
-use Firebase\JWT\KEY;
+use Firebase\JWT\Key;
+
+
+
 
 function verifyToken($token) {
-    try {
-        $decoded = JWT::decode($token, new Key($secretKey, 'HS256'));
+
+    $secretKey = 'secretKey';
+
+    if(!$token) {
+        return null;
+    }
+    
+    $decoded = JWT::decode($token, new Key($secretKey, 'HS256'));
+    
+    if(is_object($decoded)) {
         return $decoded;
-    } catch (Exception $e) {
+    } else {
         return null;
     }
 }

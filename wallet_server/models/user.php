@@ -1,9 +1,9 @@
 <?php
 
     use Firebase\JWT\JWT;
-    use Firebase\JWT\KEY;
+    use Firebase\JWT\Key;
 
-    $conn = include("../connection/connection.php");
+    $conn = include('../connection/connection.php');
     require_once '../utils/jwt.php';
     include('C:/xampp/htdocs/digital_wallet/vendor/autoload.php');
 
@@ -64,7 +64,6 @@
 
         public static function signIn ($conn, $emailOrPhoneNumber, $password) {
 
-            session_start();
             
             if (filter_var($emailOrPhoneNumber, FILTER_VALIDATE_EMAIL)) {
                 $credentialsCheckQuery = $conn->prepare("SELECT * FROM users WHERE email = ?");
@@ -87,7 +86,7 @@
 
                     
                     //generate JWT
-                    $secretKey = 'houssien_zeineddine'; //used to sign the JWT preferred not to be hard-coded, will learn how later
+                    $secretKey = 'secretKey'; //used to sign the JWT preferred not to be hard-coded, will learn how later
                     $payload = [
                         'iss' => 'zwallet.com', //application name or domain
                         'aud' => 'server', //the recipient of the jwt
@@ -98,9 +97,15 @@
 
                     $token = JWT::encode($payload, $secretKey, 'HS256');
 
-                    $_SESSION['token'] = $token;
+                    setcookie("auth_token", $token, [
+                        'expires' => time() + 600,  // Token expires in 10 minutes
+                        'path' => '/',  // Available to all pages on the domain
+                        'httponly' => true,  // Prevents JavaScript access (protects against XSS)
+                        'secure' => true,    // Ensures it's only sent over HTTPS
+                        'samesite' => 'Strict' 
+                    ]);
 
-                    return ['status' => 'success', 'message' => 'login successfully'/* , 'token' => '$token' */];
+                    return ['status' => 'success', 'message' => 'login successfully', 'userId' => $user['id']];
                 } else {
                     return ['status' => 'error', 'message' => 'Password doesnt match email/phone number'];
                 }

@@ -1,17 +1,29 @@
 <?php
+    require_once '../utils/jwt.php';
 
-    session_start();
+    
 
-    include('../utils/jwt.php');
-
-    if(!isset($_SESSION['token'])) {
+    if(!isset($_COOKIE['auth_token'])) {
         echo json_encode(['status' => 'unauthorized']);
+    } else {
+        $decoded = verifyToken($_COOKIE['auth_token']);
+
+        if($decoded) {
+            echo json_encode(['status' => 'authorized']);
+        } else {
+            echo json_encode(['status' => 'unauthorized']);
+        }
     }
 
-    $decoded = verifyToken($_SESSION['token']);
+    /* if(isset($_COOKIE['auth_token']) && !empty($_SESSION['token'])) {
+        $decoded = verifyToken($_COOKIE['auth_token']);
 
-    if(!$decoded) {
+        if($decoded) {
+            echo json_encode(['status' => 'user is authorized']);
+        } else {
+            echo json_encode(['status' => 'unauthorized']);
+        }
+    }  else {
         echo json_encode(['status' => 'unauthorized']);
-    }
-
+    } */
 ?>

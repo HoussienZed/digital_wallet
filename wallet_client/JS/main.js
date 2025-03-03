@@ -10,9 +10,6 @@ const signedInNavLinks = document.querySelectorAll("signed_in_nav_links");
 
 const logoutButton = document.getElementById("logoutButton");
 
-/* const signInPage = document.getElementById("signInPage");
-const signUpPage = document.getElementById("signUpPage") */;
-
 
 //open dropdown
 const openNav = () => {
@@ -62,12 +59,6 @@ document.addEventListener("DOMContentLoaded", () => {
                     document.getElementById("signUpErrorAlert").textContent = result.message;
                 }
             })
-            /* .catch((error) => {
-                console.error("Error:", error);
-                document.querySelector(".alert_message.success").style.display = "none";
-                document.querySelector(".alert_message.error").style.display = "block";
-                document.querySelector(".error_message").textContent = "An error occurred. Please try again.";
-            }); */
         })
     }
 })
@@ -80,63 +71,51 @@ document.addEventListener("DOMContentLoaded", () => {
 
             const formData = new FormData(event.target);
 
+            console.log("message before calling api");
 
             //no need to pass the content type because axios by default deal with it as json object
-            axios.post("http://localhost/digital_wallet/wallet_server/apis/signin.php", formData/*  , {
-                headers: {
-                    "Content-Type" : "application/json"
-                }
-            } */)
+            axios.post("http://localhost/digital_wallet/wallet_server/apis/signin.php", formData)
             .then((response) => {
                 //axios already parses the response makimg it json so no need to add .json() method
                 const result = response.data;
-
                 console.log(result);
-
+                console.log("iam in sign in event in js");
                 if(result.status === "success") {
                     window.location.href = "../wallet_client/dashboard.html";
-                    /* signedInNavLinks.forEach(element => {
-                        element.style.display = "block";
-                    }) */
                 } else {
                     document.getElementById("signInErrorAlert").style.display = "block";
                     document.getElementById("signInErrorAlert").textContent = result.message;
                 }
             })
-            /* .catch((error) => {
-                console.error("Error:", error);
-                document.querySelector(".alert_message.success").style.display = "none";
-                document.querySelector(".alert_message.error").style.display = "block";
-                document.querySelector(".error_message").textContent = "An error occurred. Please try again.";
-            }); */
         })
     }
 })
 
 document.addEventListener("DOMContentLoaded", () => {
+    
     logoutButton.addEventListener("click", async () => {
-        axios.post("http://localhost/digital_wallet/wallet_server/apis/logout.php")
-            .then(response => {
-                window.location.href = "http://localhost/digital_wallet/wallet_client/signin.html";
-                /* if (response.data.status === 'success') {
-                    // Redirect to login page or show message after successful logout
-                    window.location.href = "login.php";  // Redirect to login page
-                } else {
-                    console.error('Logout failed:', response.data.message);
-                } */
+        if(logoutButton) {
+            axios.post("http://localhost/digital_wallet/wallet_server/apis/logout.php")
+                .then(response => {
+                    const result = response.data;
+                    if(result.status === "success") {
+                        window.location.href = "http://localhost/digital_wallet/wallet_client/signin.html";
+                    }
             })
+        }
     })
 })
 
-if (document.body.id === "dashboardPage") {
-    document.addEventListener("DOMContentLoaded", async () => {
-        axios.post("http://localhost/digital_wallet/wallet_server/apis/auth.php")
-        .then((response) => {
-            const result = response.data;
-
-            if(result['status'] === 'unauthorized') {
-                window.location.href = "http://localhost/digital_wallet/wallet_client/signin.html";
-            }
-        })
+/* if(body.id === 'dashboardPage') {} */
+document.addEventListener("DOMContentLoaded", async () => {
+    axios.post("http://localhost/digital_wallet/wallet_server/apis/auth.php")
+    .then((response) => {
+        const result = response.data;
+        console.log(result);
+        console.log("iam in dom for all pahges");
+        if(result['status'] === 'logged_out') {
+            window.location.href = "http://localhost/digital_wallet/wallet_client/signin.html";
+            return;
+        } 
     })
-}
+})
