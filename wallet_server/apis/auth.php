@@ -5,15 +5,13 @@
     include('../utils/jwt.php');
 
     if(!isset($_SESSION['token'])) {
-        header('Location: ../wallet_client/signin.html');
-        exit();
+        echo json_encode(['status' => 'unauthorized']);
     }
 
     $decoded = verifyToken($_SESSION['token']);
 
     if(!$decoded) {
-        header('Location: ../wallet_client/sigin.html');
-        exit();
+        echo json_encode(['status' => 'unauthorized']);
     }
 
 ?>

@@ -127,3 +127,16 @@ document.addEventListener("DOMContentLoaded", () => {
             })
     })
 })
+
+if (document.body.id === "dashboardPage") {
+    document.addEventListener("DOMContentLoaded", async () => {
+        axios.post("http://localhost/digital_wallet/wallet_server/apis/auth.php")
+        .then((response) => {
+            const result = response.data;
+
+            if(result['status'] === 'unauthorized') {
+                window.location.href = "http://localhost/digital_wallet/wallet_client/signin.html";
+            }
+        })
+    })
+}
