@@ -6,6 +6,10 @@ const signInForm = document.getElementById("signInForm");
 const signUpSuccessAlert = document.getElementById("signUpSuccessAlert");
 const signUpErrorAlert = document.getElementById("signUpErrorAlert");
 const signInErrorAlert = document.getElementById("signInErrorAlert");
+const signedInNavLinks = document.querySelectorAll("signed_in_nav_links");
+
+const logoutButton = document.getElementById("logoutButton");
+
 /* const signInPage = document.getElementById("signInPage");
 const signUpPage = document.getElementById("signUpPage") */;
 
@@ -91,6 +95,9 @@ document.addEventListener("DOMContentLoaded", () => {
 
                 if(result.status === "success") {
                     window.location.href = "../wallet_client/dashboard.html";
+                    /* signedInNavLinks.forEach(element => {
+                        element.style.display = "block";
+                    }) */
                 } else {
                     document.getElementById("signInErrorAlert").style.display = "block";
                     document.getElementById("signInErrorAlert").textContent = result.message;
@@ -104,4 +111,19 @@ document.addEventListener("DOMContentLoaded", () => {
             }); */
         })
     }
+})
+
+document.addEventListener("DOMContentLoaded", () => {
+    logoutButton.addEventListener("click", async () => {
+        axios.post("http://localhost/digital_wallet/wallet_server/apis/logout.php")
+            .then(response => {
+                window.location.href = "http://localhost/digital_wallet/wallet_client/signin.html";
+                /* if (response.data.status === 'success') {
+                    // Redirect to login page or show message after successful logout
+                    window.location.href = "login.php";  // Redirect to login page
+                } else {
+                    console.error('Logout failed:', response.data.message);
+                } */
+            })
+    })
 })

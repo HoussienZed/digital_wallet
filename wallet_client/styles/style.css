@@ -123,7 +123,7 @@ nav button {
 }
 
 .nav_profile .signed_in_nav_links {
-    display: none;
+    display: block;
 }
 
 
