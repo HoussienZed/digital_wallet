@@ -35,13 +35,13 @@ closeNavBtn.addEventListener('click', closeNav);
 
 
 async function fetchUserDetails(userId) {
-    axios.post("http://localhost/digital_wallet/wallet_server/apis/getUser.php", {userId})
-    .then ((response) => {
-        const data = response.data;
-        console.log("response dta in fetchuser: " + data);
-        return response.data;
-    }
-)}
+    const response =  await axios.post("http://localhost/digital_wallet/wallet_server/apis/getUser.php", {userId})
+    
+    const detail = response.data;
+    console.log("response data in fetchuser: " + detail);
+    return detail;
+}
+
 
 function updateUserProfile(user) {
     fullname.innerText = user.full_name;
@@ -52,20 +52,22 @@ function updateUserProfile(user) {
 }
 
 async function checkAuthentication () {
-    axios.post("http://localhost/digital_wallet/wallet_server/apis/auth.php")
-    .then(async (authResponse) => {
-        if(authResponse.data.status === "authorized") {
-            let userId = authResponse.data.userId;
-            if(userId) {
-                let user = await fetchUserDetails(userId);
-                console.log("authrespose result: " + user);
-                updateUserProfile(user);
-            }
-        } else {
-            console.log("user unauthorized");
+    const authResponse = await axios.post("http://localhost/digital_wallet/wallet_server/apis/auth.php")
+
+    if(authResponse.data.status === "authorized") {
+        let userId = authResponse.data.userId; 
+        console.log(userId); // user id is correct
+        
+        if(userId) {
+            const user = await fetchUserDetails(userId);
+            console.log("authrespose result: " + user);
+            updateUserProfile(user);
         }
-    })
+    } else {
+        console.log("user unauthorized");
+    }
 }
+
 
 /* document.addEventListener("DOMContentLoaded", checkAuthentication); */
 
