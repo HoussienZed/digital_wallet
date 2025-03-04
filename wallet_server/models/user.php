@@ -115,7 +115,7 @@
         }
 
         public static function getUserById($conn, $userId) {
-            $query = $conn -> prepare("SELECT fullname, email, phoneNumber, address, profilePicture FROM users WHERE id = ?");
+            $query = $conn -> prepare("SELECT full_name, email, phone_number, address, profile_picture FROM users WHERE id = ?");
             $query->bind_param('i', $userId);
 
             $query->execute();
@@ -123,8 +123,29 @@
             $result = $query->get_result();
             $user = $result->fetch_assoc();
 
-            return $user;
-        }
+           /*  $secretKey = 'secretKey'; //used to sign the JWT preferred not to be hard-coded, will learn how later
+            $payload = [
+                        'iss' => 'zwallet.com', //application name or domain
+                        'aud' => 'server', //the recipient of the jwt
+                        'iat' => time(),
+                        'exp' => time() + 600,
+                        'userId' => $user['id']
+                    ];
+
+            $token = JWT::encode($payload, $secretKey, 'HS256');
+
+            setcookie("auth_token", $token, [
+                        'expires' => time() + 600,  // Token expires in 10 minutes
+                        'path' => '/',  // Available to all pages on the domain
+                        'httponly' => true,  // Prevents JavaScript access (protects against XSS)
+                        'secure' => true,    // Ensures it's only sent over HTTPS
+                        'samesite' => 'Strict' 
+                    ]);
+
+            */
+            return $userId;
+        } 
+       
     }
 
 ?>

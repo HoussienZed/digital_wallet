@@ -17,7 +17,7 @@ const phoneNumber = document.getElementById('phoneNumber');
 const address = document.getElementById('address');
 const profilePicture = document.getElementById('profilePicture');
 
-let isUserLoggedIn = false;
+const profilePage = document.getElementById("profilePage");
 
 //open dropdown
 const openNav = () => {
@@ -35,6 +35,9 @@ const closeNav = () => {
 
 openNavBtn.addEventListener('click', openNav);
 closeNavBtn.addEventListener('click', closeNav);
+
+
+document.addEventListener("DOMContentLoaded", checkAuthentication());
 
 
 document.addEventListener("DOMContentLoaded", () => {
@@ -119,16 +122,40 @@ document.addEventListener("DOMContentLoaded", () => {
     })
 })
 
-/* if(body.id === 'dashboardPage') {} */
-document.addEventListener("DOMContentLoaded", async () => {
-    axios.post("http://localhost/digital_wallet/wallet_server/apis/auth.php")
-    .then((response) => {
-        const result = response.data;
-        console.log(result);
-        console.log("iam in dom for all pahges");
-        if(result['status'] === 'logged_out') {
-            window.location.href = "http://localhost/digital_wallet/wallet_client/signin.html";
-            return;
-        } 
+
+function fetchUserDetails(userId) {
+    axios.get("http://localhost/digital_wallet/wallet_server/apis/getUser.php")
+    .then ((response) => {
+        if(response.data) {
+            updateUserProfile()
+        }
     })
+
+}
+
+
+async function checkAuthentication () {
+    axios.get("http://localhost/digital_wallet/wallet_server/apis/auth.php")
+    .then((authResponse) => {
+        if(authResponse.data.status === "authorized") {
+            let userId = authResponse.data.userId;
+            if(userId) {
+                fetchDetails(userId);
+            }
+        } else {
+            console.log("user unauthorized");
+        }
+    })
+}
+
+
+/* document.addEventListener("DOMContentLoaded", () => {
+    if (document.body.id === 'profilePage') {
+        axios.post("http://localhost/digital_wallet/wallet_server/apis/getUser.php")
+        .then((response)=>{
+            if
+            
+        }
+    )}
 })
+ */
