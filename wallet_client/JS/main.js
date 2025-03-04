@@ -7,7 +7,6 @@ const signUpSuccessAlert = document.getElementById("signUpSuccessAlert");
 const signUpErrorAlert = document.getElementById("signUpErrorAlert");
 const signInErrorAlert = document.getElementById("signInErrorAlert");
 const signedInNavLinks = document.querySelectorAll("signed_in_nav_links");
-
 const logoutButton = document.getElementById("logoutButton");
 
 //declaring profile info elements
@@ -16,8 +15,6 @@ const email = document.getElementById('email');
 const phoneNumber = document.getElementById('phoneNumber');
 const address = document.getElementById('address');
 const profilePicture = document.getElementById('profilePicture');
-
-const profilePage = document.getElementById("profilePage");
 
 //open dropdown
 const openNav = () => {
@@ -37,10 +34,46 @@ openNavBtn.addEventListener('click', openNav);
 closeNavBtn.addEventListener('click', closeNav);
 
 
-document.addEventListener("DOMContentLoaded", checkAuthentication());
+async function fetchUserDetails(userId) {
+    axios.post("http://localhost/digital_wallet/wallet_server/apis/getUser.php", {userId})
+    .then ((response) => {
+        const data = response.data;
+        console.log("response dta in fetchuser: " + data);
+        return response.data;
+    }
+)}
+
+function updateUserProfile(user) {
+    fullname.innerText = user.full_name;
+    email.textContent = user.email;
+    phoneNumber.textContent = user.phone_number;
+    address.textContent = user.address;
+    profilePicture.src = user.profile_picture; /* || "default.png"; */ // Use default image if none exists
+}
+
+async function checkAuthentication () {
+    axios.post("http://localhost/digital_wallet/wallet_server/apis/auth.php")
+    .then(async (authResponse) => {
+        if(authResponse.data.status === "authorized") {
+            let userId = authResponse.data.userId;
+            if(userId) {
+                let user = await fetchUserDetails(userId);
+                console.log("authrespose result: " + user);
+                updateUserProfile(user);
+            }
+        } else {
+            console.log("user unauthorized");
+        }
+    })
+}
+
+/* document.addEventListener("DOMContentLoaded", checkAuthentication); */
 
 
 document.addEventListener("DOMContentLoaded", () => {
+
+    checkAuthentication();
+
     // Check if we are on the signup page by checking the URL
     if (document.body.id === "signUpPage") { 
         /* const signUpForm = document.getElementById("signUpForm"); */
@@ -69,20 +102,7 @@ document.addEventListener("DOMContentLoaded", () => {
             })
         })
     }
-})
 
-
-function updateUserProfile(user) {
-    fullname.innerText = user.fullname;
-    email.textContent = user.email;
-    phoneNumber.textContent = user.phoneNumber;
-    address.textContent = user.address;
-    profilePicture.src = user.profilePicture; /* || "default.png"; */ // Use default image if none exists
-}
-
-
-
-document.addEventListener("DOMContentLoaded", () => {
     if (document.body.id === "signInPage") { 
         signInForm.addEventListener("submit", async (event) => {
             event.preventDefault(); // Prevent the form from submitting the default way
@@ -94,7 +114,6 @@ document.addEventListener("DOMContentLoaded", () => {
                 
                 //axios already parses the response makimg it json so no need to add .json() method
                 const result = response.data;
-                console.log(result.userId);
             
                 if(result.status === "success") {
                     window.location.href = "../wallet_client/dashboard.html";
@@ -105,10 +124,7 @@ document.addEventListener("DOMContentLoaded", () => {
             })
         })
     }
-})
 
-document.addEventListener("DOMContentLoaded", () => {
-    
     logoutButton.addEventListener("click", async () => {
         if(logoutButton) {
             axios.post("http://localhost/digital_wallet/wallet_server/apis/logout.php")
@@ -120,42 +136,9 @@ document.addEventListener("DOMContentLoaded", () => {
             })
         }
     })
+    
 })
 
 
-function fetchUserDetails(userId) {
-    axios.get("http://localhost/digital_wallet/wallet_server/apis/getUser.php")
-    .then ((response) => {
-        if(response.data) {
-            updateUserProfile()
-        }
-    })
-
-}
 
 
-async function checkAuthentication () {
-    axios.get("http://localhost/digital_wallet/wallet_server/apis/auth.php")
-    .then((authResponse) => {
-        if(authResponse.data.status === "authorized") {
-            let userId = authResponse.data.userId;
-            if(userId) {
-                fetchDetails(userId);
-            }
-        } else {
-            console.log("user unauthorized");
-        }
-    })
-}
-
-
-/* document.addEventListener("DOMContentLoaded", () => {
-    if (document.body.id === 'profilePage') {
-        axios.post("http://localhost/digital_wallet/wallet_server/apis/getUser.php")
-        .then((response)=>{
-            if
-            
-        }
-    )}
-})
- */
