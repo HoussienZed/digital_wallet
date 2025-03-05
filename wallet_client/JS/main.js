@@ -35,16 +35,27 @@ closeNavBtn.addEventListener('click', closeNav);
 
 
 async function fetchUserDetails(userId) {
-    const response =  await axios.post("http://localhost/digital_wallet/wallet_server/apis/getUser.php", {userId})
     
+    console.log("sending userid: ", userId);
+    
+    const response =  await axios.post(
+        "http://localhost/digital_wallet/wallet_server/apis/getUser.php", 
+        {user: userId}, 
+        {headers: {
+            'Content-Type': 'application/json' // Request headers
+        }})
+        
+    console.log("sending userid: ", userId);
+        
     const detail = response.data;
-    console.log("response data in fetchuser: " + detail);
+    console.log("fetch response :" + detail);
     return detail;
 }
 
 
+
 function updateUserProfile(user) {
-    fullname.innerText = user.full_name;
+    fullname.textContent = user.full_name;
     email.textContent = user.email;
     phoneNumber.textContent = user.phone_number;
     address.textContent = user.address;
@@ -56,12 +67,14 @@ async function checkAuthentication () {
 
     if(authResponse.data.status === "authorized") {
         let userId = authResponse.data.userId; 
-        console.log(userId); // user id is correct
+        console.log("check auth", userId); // user id is correct
         
         if(userId) {
-            const user = await fetchUserDetails(userId);
-            console.log("authrespose result: " + user);
-            updateUserProfile(user);
+            console.log("before fetchuser");
+            const response = await fetchUserDetails(userId);
+            console.log("after fetchuser so it is working properly");
+            console.log("after fetching user response =", response);
+            updateUserProfile(response);
         }
     } else {
         console.log("user unauthorized");

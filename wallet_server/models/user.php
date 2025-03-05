@@ -92,7 +92,7 @@
                         'aud' => 'server', //the recipient of the jwt
                         'iat' => time(),
                         'exp' => time() + 600,
-                        'userId' => $user['id']
+                        'userId' => $user['user_id']
                     ];
 
                     $token = JWT::encode($payload, $secretKey, 'HS256');
@@ -105,7 +105,7 @@
                         'samesite' => 'Strict' 
                     ]);
 
-                    return ['status' => 'success', 'message' => 'login successfully', 'userId' => $user['id']];
+                    return ['status' => 'success', 'message' => 'login successfully', 'userId' => $user['user_id']];
                 } else {
                     return ['status' => 'error', 'message' => 'Password doesnt match email/phone number'];
                 }
@@ -115,7 +115,7 @@
         }
 
         public static function getUserById($conn, $userId) {
-            $query = $conn -> prepare("SELECT full_name, email, phone_number, address, profile_picture FROM users WHERE id = ?");
+            $query = $conn -> prepare("SELECT full_name, email, phone_number, address, profile_picture FROM users WHERE user_id = ?");
             $query->bind_param('i', $userId);
 
             $query->execute();
