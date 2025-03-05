@@ -1,13 +1,10 @@
-
 # **Z DIGITAL WALLET**
 
 Z Digital Wallet is secure and fast transactions.
-Send and receive money instantly with top-tier encryption. 
-Your transactions are protected with multi-layer security protocols. 
-Experience fast payments without delays or hidden fees. 
+Send and receive money instantly with top-tier encryption.
+Your transactions are protected with multi-layer security protocols.
+Experience fast payments without delays or hidden fees.
 Enjoy seamless transactions with bank-grade security and reliability.Easy wallet management, you can track your balance and spending with real-time updates.
-
-
 
 ## Tech Stack
 
@@ -16,18 +13,18 @@ Enjoy seamless transactions with bank-grade security and reliability.Easy wallet
 **Server:** MySql, PHP
 
 ## Hosting
- Server Information:
 
-|         color     | Hex                                                                |
-| ----------------- | ------------------------------------------------------------------ |
-| Server Type | Ubuntu |
+Server Information:
+
+| color              | Hex           |
+| ------------------ | ------------- |
+| Server Type        | Ubuntu        |
 | Domain / Public IP | 13.39.112.176 |
-| Database| MySQL |
+| Database           | MySQL         |
 
 ## Live URL
 
 http://13.39.112.176
-
 
 ## API Reference
 
@@ -37,9 +34,9 @@ http://13.39.112.176
   wallet_server/apis
 ```
 
-| Parameter | Type     | link              |
-| :-------- | :------- | :------------------------- |
-| `userId` | `integer` | http://localhost/digital_wallet/wallet_server/apis/getUser.php |
+| Parameter | Type   | link                                                           |
+| :-------- | :----- | :------------------------------------------------------------- |
+| `userId`  | `JSON` | http://localhost/digital_wallet/wallet_server/apis/getUser.php |
 
 #### Create User
 
@@ -47,9 +44,9 @@ http://13.39.112.176
   wallet_server/apis
 ```
 
-| Parameter | Type     | link                     |
-| :-------- | :------- | :-------------------------------- |
-| `formData`      | `formData` | http://localhost/digital_wallet/wallet_server/apis/createUser.php |
+| Parameter  | Type       | link                                                              |
+| :--------- | :--------- | :---------------------------------------------------------------- |
+| `formData` | `formData` | http://localhost/digital_wallet/wallet_server/apis/createUser.php |
 
 #### Authenticate user
 
@@ -57,11 +54,9 @@ http://13.39.112.176
   wallet_server/apis
 ```
 
-| Parameter | Type     | link              |
-| :-------- | :------- | :------------------------- |
-| `userId` | `integer` | http://localhost/digital_wallet/wallet_server/apis/auth.php |
-
-
+| Parameter | Type   | link                                                        |
+| :-------- | :----- | :---------------------------------------------------------- |
+| `userId`  | `JSON` | http://localhost/digital_wallet/wallet_server/apis/auth.php |
 
 ## Run Locally
 
@@ -71,8 +66,6 @@ Clone the project
   git clone https://github.com/HoussienZed/digital_wallet.git
 ```
 
-
 ## ER Diagram
 
-![App Screenshot](https://via.placeholder.com/468x300?text=App+Screenshot+Here)
-
+![ER Diagram](drawSQL-image-export-2025-03-05.png)
