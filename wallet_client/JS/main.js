@@ -56,11 +56,12 @@ async function fetchUserDetails(userId) {
 
 
 function updateUserProfile(user) {
-    fullname.textContent = user.full_name;
     email.textContent = user.email;
-    phoneNumber.textContent = user.phone_number;
-    address.textContent = user.address;
     profilePicture.src = user.profile_picture; /* || "default.png"; */ // Use default image if none exists
+    address.textContent = user.address;
+    fullname.textContent = user.full_name;
+    phoneNumber.textContent = user.phone_number;
+
 }
 
 async function checkAuthentication () {
