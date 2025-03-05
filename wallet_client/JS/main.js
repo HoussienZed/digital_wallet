@@ -1,19 +1,20 @@
 const navItems = document.querySelector('.nav_items');
 const openNavBtn = document.querySelector('#open_nav_btn');
-const closeNavBtn = document.querySelector('#close_nav_btn');
 const signUpForm = document.getElementById("signupForm");
 const signInForm = document.getElementById("signInForm");
-const signUpSuccessAlert = document.getElementById("signUpSuccessAlert");
+const closeNavBtn = document.querySelector('#close_nav_btn');
+const logoutButton = document.getElementById("logoutButton");
 const signUpErrorAlert = document.getElementById("signUpErrorAlert");
 const signInErrorAlert = document.getElementById("signInErrorAlert");
 const signedInNavLinks = document.querySelectorAll("signed_in_nav_links");
-const logoutButton = document.getElementById("logoutButton");
+const signUpSuccessAlert = document.getElementById("signUpSuccessAlert");
+
 
 //declaring profile info elements
-const fullname = document.getElementById('fullname');
 const email = document.getElementById('email');
-const phoneNumber = document.getElementById('phoneNumber');
 const address = document.getElementById('address');
+const fullname = document.getElementById('fullname');
+const phoneNumber = document.getElementById('phoneNumber');
 const profilePicture = document.getElementById('profilePicture');
 
 //open dropdown
@@ -99,22 +100,21 @@ document.addEventListener("DOMContentLoaded", () => {
 
             console.log("event loaded successfully");
 
-            axios.post("http://localhost/digital_wallet/wallet_server/apis/createUser.php", formData , {
+            const response = await axios.post("http://localhost/digital_wallet/wallet_server/apis/createUser.php", formData , {
                 headers: {
                     "Content-Type" : "multipart/form-data"
                 } 
             })
-            .then((response) => {
-                //axios already parses the response makimg it json so no need to add .json() method
-                const result = response.data;
+            
+            //axios already parses the response makimg it json so no need to add .json() method
+            const result = response.data;
 
-                if(result.status === "success") {
-                    window.location.href = "http://localhost/digital_wallet/wallet_client/signin.html";
-                } else {
-                    document.getElementById("signUpErrorAlert").style.display = "block";
-                    document.getElementById("signUpErrorAlert").textContent = result.message;
-                }
-            })
+            if(result.status === "success") {
+                window.location.href = "http://localhost/digital_wallet/wallet_client/signin.html";
+            } else {
+                document.getElementById("signUpErrorAlert").style.display = "block";
+                document.getElementById("signUpErrorAlert").textContent = result.message;
+            }
         })
     }
 
@@ -124,34 +124,30 @@ document.addEventListener("DOMContentLoaded", () => {
 
             const formData = new FormData(event.target);
             //no need to pass the content type because axios by default deal with it as json object
-            axios.post("http://localhost/digital_wallet/wallet_server/apis/signin.php", formData)
-            .then((response) => {
+            const response = await axios.post("http://localhost/digital_wallet/wallet_server/apis/signin.php", formData)
                 
-                //axios already parses the response makimg it json so no need to add .json() method
-                const result = response.data;
+            //axios already parses the response makimg it json so no need to add .json() method
+            const result = response.data;
             
-                if(result.status === "success") {
-                    window.location.href = "../wallet_client/dashboard.html";
-                } else {
-                    document.getElementById("signInErrorAlert").style.display = "block";
-                    document.getElementById("signInErrorAlert").textContent = result.message;
-                }
-            })
+            if(result.status === "success") {
+                window.location.href = "../wallet_client/dashboard.html";
+            } else {
+                document.getElementById("signInErrorAlert").style.display = "block";
+                document.getElementById("signInErrorAlert").textContent = result.message;
+            }
         })
     }
+    
 
     logoutButton.addEventListener("click", async () => {
         if(logoutButton) {
-            axios.post("http://localhost/digital_wallet/wallet_server/apis/logout.php")
-                .then(response => {
-                    const result = response.data;
-                    if(result.status === "success") {
-                        window.location.href = "http://localhost/digital_wallet/wallet_client/signin.html";
-                    }
-            })
+            const response = await axios.post("http://localhost/digital_wallet/wallet_server/apis/logout.php")
+            result = response.data;
+            if(result.status === "success") {
+                window.location.href = "http://localhost/digital_wallet/wallet_client/signin.html";
+            }
         }
     })
-    
 })
 
 
