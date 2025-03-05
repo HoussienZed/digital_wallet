@@ -1,6 +1,6 @@
 <?php
 
-    $host = "localhost";
+    $host = "localhost:3307";
     $name = "digital_wallet";
     $user = "root";
     $password = "";

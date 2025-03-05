@@ -40,7 +40,7 @@ async function fetchUserDetails(userId) {
     console.log("sending userid: ", userId);
     
     const response =  await axios.post(
-        "http://localhost/digital_wallet/wallet_server/apis/getUser.php", 
+        "http://13.39.112.176/digital_wallet/wallet_server/apis/getUser.php", 
         {user: userId}, 
         {headers: {
             'Content-Type': 'application/json' // Request headers
@@ -65,7 +65,7 @@ function updateUserProfile(user) {
 }
 
 async function checkAuthentication () {
-    const authResponse = await axios.post("http://localhost/digital_wallet/wallet_server/apis/auth.php")
+    const authResponse = await axios.post("http://13.39.112.176/digital_wallet/wallet_server/apis/auth.php")
 
     if(authResponse.data.status === "authorized") {
         let userId = authResponse.data.userId; 
@@ -101,7 +101,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
             console.log("event loaded successfully");
 
-            const response = await axios.post("http://localhost/digital_wallet/wallet_server/apis/createUser.php", formData , {
+            const response = await axios.post("http://13.39.112.176/digital_wallet/wallet_server/apis/createUser.php", formData , {
                 headers: {
                     "Content-Type" : "multipart/form-data"
                 } 
@@ -125,7 +125,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
             const formData = new FormData(event.target);
             //no need to pass the content type because axios by default deal with it as json object
-            const response = await axios.post("http://localhost/digital_wallet/wallet_server/apis/signin.php", formData)
+            const response = await axios.post("http://13.39.112.176/digital_wallet/wallet_server/apis/signin.php", formData)
                 
             //axios already parses the response makimg it json so no need to add .json() method
             const result = response.data;
@@ -142,7 +142,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
     logoutButton.addEventListener("click", async () => {
         if(logoutButton) {
-            const response = await axios.post("http://localhost/digital_wallet/wallet_server/apis/logout.php")
+            const response = await axios.post("http://13.39.112.176/digital_wallet/wallet_server/apis/logout.php")
             result = response.data;
             if(result.status === "success") {
                 window.location.href = "http://localhost/digital_wallet/wallet_client/signin.html";
