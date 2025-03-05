@@ -1,6 +1,10 @@
 <?php
     require_once '../utils/jwt.php';
 
+    header("Access-Control-Allow-Origin: *");
+    header("Access-Control-Allow-Methods: POST, GET, OPTIONS");
+    header("Access-Control-Allow-Headers: Content-Type, Authorization");
+
     
 
     if(!isset($_COOKIE['auth_token'])) {

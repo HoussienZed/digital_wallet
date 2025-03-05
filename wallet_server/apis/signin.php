@@ -1,4 +1,9 @@
 <?php
+
+    header("Access-Control-Allow-Origin: *");
+    header("Access-Control-Allow-Methods: POST, GET, OPTIONS");
+    header("Access-Control-Allow-Headers: Content-Type, Authorization");
+
     $conn = include("../connection/connection.php");
     include("C:/xampp/htdocs/digital_wallet/wallet_server/models/user.php");
 

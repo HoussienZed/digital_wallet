@@ -1,6 +1,9 @@
 <?php
 
-//this apin is functioning well on postman
+    header("Access-Control-Allow-Origin: *");
+    header("Access-Control-Allow-Methods: POST, GET, OPTIONS");
+    header("Access-Control-Allow-Headers: Content-Type, Authorization");
+
 
     $conn = include("../connection/connection.php");
     include("../models/user.php");
