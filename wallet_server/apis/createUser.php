@@ -5,8 +5,8 @@
     header("Access-Control-Allow-Headers: Content-Type, Authorization");
 
 
-    $conn = include("../connection/connection.php");
-    include("../models/user.php");
+    $conn = require("../connection/connection.php");
+    require("../models/user.php");
 
     header('Content-Type: multipart/form-data');
 
@@ -20,9 +20,6 @@
 
     $result = User::createUser($conn, $fullName, $password, $repeatedPassword, $email, $phoneNumber, $address, $profilePicture);
     
-    /* if($result["status"] === "success") {
-        header("Location: ../wallet_client/signin.html");
-    } */
 
     echo json_encode($result);
 

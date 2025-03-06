@@ -4,8 +4,8 @@
     header("Access-Control-Allow-Methods: POST, GET, OPTIONS");
     header("Access-Control-Allow-Headers: Content-Type, Authorization");
 
-    $conn = include("../connection/connection.php");
-    include("C:/xampp/htdocs/digital_wallet/wallet_server/models/user.php");
+    $conn = require("../connection/connection.php");
+    require("C:/xampp/htdocs/digital_wallet/wallet_server/models/user.php");
 
     header('Content-Type: application/json');
 

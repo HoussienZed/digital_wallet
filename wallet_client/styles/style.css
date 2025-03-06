@@ -127,12 +127,8 @@ nav button {
     border: 0.2rem solid black;
 }
 
-/* .nav_profile .signed_in_nav_links {
-    display: block;
-} */
-
 .nav_profile .signed_in_nav_links {
-    display: block;
+    display: none;
 }
 
 
