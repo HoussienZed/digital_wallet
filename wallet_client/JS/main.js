@@ -7,6 +7,7 @@ const logoutButton = document.getElementById("logoutButton");
 const signUpErrorAlert = document.getElementById("signUpErrorAlert");
 const signInErrorAlert = document.getElementById("signInErrorAlert");
 const signedInNavLinks = document.querySelectorAll("signed_in_nav_links");
+const signedOutNavLinks = document.getElementById("signed_out_nav_links");
 const signUpSuccessAlert = document.getElementById("signUpSuccessAlert");
 
 
@@ -74,6 +75,8 @@ async function checkAuthentication () {
         if(userId) {
             console.log("before fetchuser");
             const response = await fetchUserDetails(userId);
+            signedInNavLinks.style.display = "block";
+            signedOutNavLinks.style.display = "none";
             console.log("after fetchuser so it is working properly");
             console.log("after fetching user response =", response);
             updateUserProfile(response);
@@ -84,16 +87,12 @@ async function checkAuthentication () {
 }
 
 
-/* document.addEventListener("DOMContentLoaded", checkAuthentication); */
-
-
 document.addEventListener("DOMContentLoaded", () => {
 
     checkAuthentication();
 
     // Check if we are on the signup page by checking the URL
     if (document.body.id === "signUpPage") { 
-        /* const signUpForm = document.getElementById("signUpForm"); */
         signUpForm.addEventListener("submit", async (event) => {
             event.preventDefault(); // Prevent the form from submitting the default way
 
@@ -145,6 +144,8 @@ document.addEventListener("DOMContentLoaded", () => {
             const response = await axios.post("http://13.39.112.176/digital_wallet/wallet_server/apis/logout.php")
             result = response.data;
             if(result.status === "success") {
+                signedInNavLinks.style.display = "block";
+                signedOutNavLinks.style.display = "none";
                 window.location.href = "http://localhost/digital_wallet/wallet_client/signin.html";
             }
         }
