@@ -10,7 +10,7 @@
     
     $data = json_decode(file_get_contents('php://input'), true);
 
-    $userId = $data['user'];
+    $userId = $_POST['userId'];
     
     $result = User::getUserById($conn, $userId);
 
